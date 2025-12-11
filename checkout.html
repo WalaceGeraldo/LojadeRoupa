@@ -256,9 +256,10 @@
                         <h3>Boleto Bancário</h3>
                         <p>Pagamento à vista. O boleto será gerado após clicar no botão abaixo.</p>
                         <div id="boleto-code-container" class="hidden">
-                            <img src="imagens/checkout/boleto_barcode.png" alt="Código de Barras" class="barcode-img">
-                            <p style="font-family: monospace; letter-spacing: 2px; margin-top: 10px;">34191.79001
-                                01043.510047 91020.150008 5 89820000260000</p>
+                            <!-- Imagem removida conforme solicitado -->
+                            <p
+                                style="font-family: monospace; letter-spacing: 2px; margin-top: 20px; font-weight: bold; font-size: 1.2em; word-break: break-all;">
+                                34191.79001 01043.510047 91020.150008 5 89820000260000</p>
                         </div>
                     </div>
 
@@ -266,10 +267,12 @@
                     <div id="pix-content" class="payment-content hidden" style="text-align: center;">
                         <h3>Pagamento via PIX</h3>
                         <p>Gerar QR Code para pagamento instantâneo:</p>
-                        <div id="pix-code-container" class="hidden">
-                            <img src="imagens/checkout/pix_qr.png" alt="QR Code PIX" class="qr-code-img">
-                            <p style="font-size: 12px; margin-top: 10px; color: #6b7280;">Aprovação imediata</p>
+                        <div id="pix-code-container" class="hidden"
+                            style="display: flex; justify-content: center; margin: 20px 0;">
+                            <!-- QR Code será gerado aqui -->
                         </div>
+                        <p style="font-size: 12px; margin-top: 10px; color: #6b7280;" id="pix-instructions"
+                            class="hidden">Aprovação imediata</p>
                     </div>
                     <p style="font-size: 14px; color: #6b7280;">Ao clicar em "Pagar agora", você concorda com os termos
                         e condições.</p>
@@ -315,6 +318,7 @@
     </footer>
 
     <script src="cart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const listContainer = document.getElementById('mini-cart-list');
@@ -376,12 +380,30 @@
                         // Gerar PIX
                         btn.textContent = 'Gerando QR Code...';
                         btn.disabled = true;
+
                         setTimeout(() => {
-                            document.getElementById('pix-code-container').classList.remove('hidden');
+                            const container = document.getElementById('pix-code-container');
+                            container.innerHTML = ''; // Limpa anterior
+                            container.classList.remove('hidden');
+                            document.getElementById('pix-instructions').classList.remove('hidden');
+
+                            // Gera QR Code Real
+                            // Payload fictício de PIX para exemplo
+                            const pixPayload = "00020126580014BR.GOV.BCB.PIX0136123e4567-e89b-12d3-a456-426614174000520400005303986540510.005802BR5913Poisson Modas6008BRASILIA62070503***6304E2CA";
+
+                            new QRCode(container, {
+                                text: pixPayload,
+                                width: 180,
+                                height: 180,
+                                colorDark: "#000000",
+                                colorLight: "#ffffff",
+                                correctLevel: QRCode.CorrectLevel.H
+                            });
+
                             btn.textContent = 'Finalizar Compra';
                             btn.disabled = false;
                             paymentStep = 'finalized';
-                        }, 1500);
+                        }, 1000);
                     } else {
                         // Finalizar
                         finishPurchase(btn);
@@ -415,7 +437,11 @@
                 // Reset step se mudar de opção
                 paymentStep = 'init';
                 document.getElementById('boleto-code-container').classList.add('hidden');
-                document.getElementById('pix-code-container').classList.add('hidden');
+                const pixContainer = document.getElementById('pix-code-container');
+                pixContainer.classList.add('hidden');
+                pixContainer.innerHTML = ''; // Limpa QR Code code
+                const pixInstr = document.getElementById('pix-instructions');
+                if (pixInstr) pixInstr.classList.add('hidden');
 
                 creditContent.classList.add('hidden');
                 boletoContent.classList.add('hidden');
