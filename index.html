@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Poisson Modas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Estilos para a mensagem de não encontrado */
+        .not-found-message {
+            grid-column: 1 / -1;
+            /* Ocupa todas as colunas */
+            text-align: center;
+            padding: 40px;
+            color: #ef4444;
+            /* Vermelho/alerta */
+            font-weight: 600;
+            font-size: 18px;
+            background: #fef2f2;
+            /* Fundo leve */
+            border: 1px dashed #fca5a5;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        /* Estilos para o Dropdown de Resultados da Busca */
+        .search-dropdown-container {
+            position: relative;
+            /* Garante que o dropdown fique posicionado corretamente, especialmente no header */
+            flex-grow: 1;
+            max-width: 400px;
+            /* Deve ser o mesmo ou maior que a largura do campo de busca */
+            margin: 0 15px 0 32px;
+        }
+
+        .search-dropdown-container .search-bar {
+            margin: 0;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-dropdown {
+            position: absolute;
+            top: 100%;
+            /* Abaixo da barra de pesquisa */
+            left: 0;
+            right: 0;
+            z-index: 50;
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 10px 0;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .search-result-item {
+            display: flex;
+            align-items: center;
+            padding: 8px 15px;
+            text-decoration: none;
+            color: #111827;
+            transition: background-color 0.1s;
+        }
+
+        .search-result-item:hover {
+            background-color: #f3f4f6;
+        }
+
+        .search-result-item img {
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-right: 10px;
+        }
+
+        .search-result-item p {
+            margin: 0;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        /* Estilo para o botão "Ver Mais" */
+        #load-more-container {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding-top: 20px;
+            order: 999;
+            /* Garante que fique no final */
+        }
+    </style>
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="container">
+            <a href="index.html" class="brand logo-text" aria-label="Poisson Modas - Página Inicial">₱Øł₴₴Ø₦</a>
+            <input type="checkbox" id="menu-toggle" class="menu-toggle">
+            <label for="menu-toggle" class="menu-button">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+
+            <div class="search-dropdown-container">
+                <form class="search-bar header-search" role="search" aria-label="Busca de produtos">
+                    <input type="search" id="main-search-input" placeholder="Buscar por roupa..."
+                        aria-label="Buscar por roupa">
+                    <button type="submit" aria-label="Pesquisar">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M15.5 15.5l5.2 5.2" />
+                            <path d="M17 10a7 7 0 10-14 0 7 7 0 0014 0z" />
+                        </svg>
+                    </button>
+                </form>
+                <div id="search-results-dropdown" class="search-dropdown" style="display: none;">
+                </div>
+            </div>
+
+            <nav class="nav" aria-label="Menu principal">
+                <form class="search-bar nav-search" role="search">
+                    <input type="search" id="nav-search-input" placeholder="Buscar por roupa..."
+                        aria-label="Buscar por roupa">
+                    <button type="submit" aria-label="Pesquisar">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M15.5 15.5l5.2 5.2" />
+                            <path d="M17 10a7 7 0 10-14 0 7 7 0 0014 0z" />
+                        </svg>
+                    </button>
+                </form>
+
+                <a href="index.html" aria-current="page">Novidades</a>
+                <a href="masculino.html">Masculino</a>
+                <a href="feminino.html">Feminino</a>
+                <a href="promoçoes.html">Promoções</a>
+                <a href="contato.html">Contato</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="banner banner-nova">
+        <div class="container">
+            <div class="banner-content">
+                <span class="kicker">Nova coleção</span>
+                <h2>Poisson</h2>
+                <p>Inspirada em renovação e intuição,<br> a coleção Poisson traz peças com<br> leveza e elegância.</p>
+                <a href="#" class="cta">Ver mais</a>
+            </div>
+        </div>
+    </section>
+    <section class="benefits">
+        <div class="container">
+            <div class="benefit"><strong>Primeira compra</strong><span>10% off com o cupom PRIMEIRA COMPRA</span></div>
+            <div class="benefit"><strong>Parcelamentos</strong><span>Em até 8x sem juros</span></div>
+            <div class="benefit"><strong>Logística reversa</strong><span>Frete grátis na primeira troca</span></div>
+            <div class="benefit"><strong>Frete grátis</strong><span>Entrega expressa para São Paulo</span></div>
+        </div>
+    </section>
+
+    <main class="container main-content-filter">
+        <div class="filter-dropdowns">
+
+            <div class="dropdown-filter">
+                <button class="filter-button" aria-expanded="false" aria-controls="menu-geral">Filtro ▼</button>
+                <ul id="menu-geral" class="dropdown-menu" role="list">
+                    <li role="listitem"><a href="#">Em Destaque</a></li>
+                    <li role="listitem"><a href="#">Mais Vendidos</a></li>
+                    <li role="listitem"><a href="#">Preço: Crescente</a></li>
+                    <li role="listitem"><a href="#">Preço: Decrescente</a></li>
+                </ul>
+            </div>
+
+            <div class="dropdown-filter">
+                <button class="filter-button" aria-expanded="false" aria-controls="menu-produtos">Produtos ▼</button>
+                <ul id="menu-produtos" class="dropdown-menu" role="list">
+                    <li role="listitem"><a href="#" class="type-filter" data-filter-type="all">Todos os Produtos</a>
+                    </li>
+                    <li role="listitem"><a href="#" class="type-filter" data-filter-type="casaco">Casaco</a></li>
+                    <li role="listitem"><a href="#" class="type-filter" data-filter-type="camisa">Camisa</a></li>
+                    <li role="listitem"><a href="#" class="type-filter" data-filter-type="short">Short / Bermuda</a>
+                    </li>
+                    <li role="listitem"><a href="#" class="type-filter" data-filter-type="moletom">Moletom</a></li>
+                    <li role="listitem"><a href="#" class="type-filter" data-filter-type="eco_bag">Eco Bag</a></li>
+                    <li role="listitem"><a href="#" class="type-filter" data-filter-type="poster">Poster</a></li>
+                    <li role="listitem"><a href="#" class="type-filter" data-filter-type="caneca">Caneca</a></li>
+                </ul>
+            </div>
+
+            <div class="dropdown-filter">
+                <button class="filter-button" aria-expanded="false" aria-controls="menu-categorias">Categorias
+                    ▼</button>
+                <ul id="menu-categorias" class="dropdown-menu filter-checkbox-list" role="list">
+                    <li class="checkbox-title" role="listitem">Gênero</li>
+                    <li role="listitem"><label><input type="checkbox" name="gender" value="masculino"
+                                class="gender-filter"> Masculino</label></li>
+                    <li role="listitem"><label><input type="checkbox" name="gender" value="feminino"
+                                class="gender-filter"> Feminino</label></li>
+                    <li role="listitem"><label><input type="checkbox" name="category" value="acessorios"
+                                class="other-filter"> Acessórios</label></li>
+                    <li role="listitem"><label><input type="checkbox" name="category" value="geek" class="other-filter">
+                            Geek</label></li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <section class="product-grid">
+        <div class="container">
+            <h2 class="grid-title">Todos os Produtos</h2>
+            <div class="product-container" id="product-container">
+
+                <div id="not-found" class="not-found-message" style="display: none;">
+                    Ops Não encontramos o produto especifico :(
+                </div>
+
+                <div id="load-more-container">
+                    <button id="load-more-button" class="cta">Ver Mais</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="contact-modal" class="modal" aria-modal="true" role="dialog" aria-labelledby="modal-title"
+        style="display: none;">
+        <div class="modal-content">
+            <button class="modal-close" id="close-contact-modal"
+                aria-label="Fechar formulário de contato">&times;</button>
+            <h2 id="modal-title">Fale Conosco</h2>
+            <p class="modal-intro">Suporte, trocas e dúvidas. Estamos aqui para ajudar. Preencha o formulário abaixo ou
+                envie um email diretamente.</p>
+
+            <form style="margin-top: 20px;">
+                <div style="margin-bottom: 15px;">
+                    <label for="nome" style="display: block; margin-bottom: 5px; font-weight: 500;">Seu Nome:</label>
+                    <input type="text" id="nome"
+                        style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <label for="email-contato" style="display: block; margin-bottom: 5px; font-weight: 500;">Seu
+                        Email:</label>
+                    <input type="email" id="email-contato"
+                        style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <label for="mensagem"
+                        style="display: block; margin-bottom: 5px; font-weight: 500;">Mensagem:</label>
+                    <textarea id="mensagem" rows="5"
+                        style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;"></textarea>
+                </div>
+                <button type="submit" class="cta" style="width: 100%;">Enviar Mensagem</button>
+            </form>
+        </div>
+    </div>
+    <footer class="site-footer">
+        <div class="footer-top">
+            <div class="container">
+                <img src="logo.png" alt="Logo Poisson Modas" class="footer-logo">
+                <nav class="footer-nav">
+                    <a href="#" id="open-contact-modal">Fale conosco</a>
+                    <a href="devolucao.html">Trocas / Devoluções</a>
+                    <a href="rastrear.html">Rastrear Pedido</a>
+                    <a href="politica-troca.html">Política de Troca e Devolução</a>
+                    <a href="denuncia.html">Denuncie o Uso Ilegal de Marcas</a>
+                </nav>
+            </div>
+        </div>
+
+        <div class="footer-main">
+            <div class="container">
+                <div class="footer-about">
+                    <h4>Sobre nós</h4>
+                    <p>Poisson – Arte que nasce no papel e vive no tecido. Cada estampa é o reflexo de uma criação feita
+                        à mão, com técnicas como pintura a óleo, giz pastel, lápis e grafite. Nada aqui é digital. Você
+                        veste arte real, com alma, textura e história. Uma marca feita para quem não veste o óbvio –
+                        veste autenticidade.</p>
+                    <p>&copy; Dados do vendedor: CNPJ 77.41.007.3/0000-00-2B</p>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Categorias</h4>
+                    <ul>
+                        <li><a href="masculino.html">Masculino</a></li>
+                        <li><a href="feminino.html">Feminino</a></li>
+                        <li><a href="promoçoes.html">Promoções</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-payment">
+                    <h4>Formas de pagamento</h4>
+                    <div class="payment-icons">
+                        <img src="logo.png" alt="Visa" style="height:30px;">
+                        <img src="logo.png" alt="Mastercard" style="height:30px;">
+                        <img src="logo.png" alt="American Express" style="height:30px;">
+                        <img src="logo.png" alt="Elo" style="height:30px;">
+                        <img src="logo.png" alt="Pix" style="height:30px;">
+                    </div>
+                    <img src="logo.png" alt="Site Seguro" class="security-seal">
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container">
+                <span class="social-text">Acompanhe-nos:</span>
+                <div class="social-icons">
+                    <a href="#" aria-label="Instagram">
+                        <svg fill="currentColor" viewBox="0 0 24 24" width="24" height="24">
+                            <path
+                                d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4c0 3.2-2.6 5.8-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8C2 4.6 4.6 2 7.8 2zm-.2 2A4.2 4.2 0 0 0 3.6 7.6v8.8a4.2 4.2 0 0 0 4.2 4.2h8.8a4.2 4.2 0 0 0 4.2-4.2V7.6a4.2 4.2 0 0 0-4.2-4.2H7.6z" />
+                            <path
+                                d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6zm6.5-3a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4z" />
+                        </svg>
+                    </a>
+                    <a href="#" aria-label="YouTube">
+                        <svg fill="currentColor" viewBox="0 0 24 24" width="24" height="24">
+                            <path
+                                d="M18.88 2c.57 0 1.05.21 1.44.6.38.38.6.86.6 1.44v15.92c0 .57-.21 1.05-.6 1.44a2 2 0 0 1-1.44.6H5.12c-.57 0-1.05-.21-1.44-.6a2 2 0 0 1-.6-1.44V4.04c0-.57.21-1.05.6-1.44C4.07 2.21 4.55 2 5.12 2zm-2.02 9.42l-5.38 3.1a.5.5 0 0 1-.76-.42V7.9a.5.5 0 0 1 .76-.42l5.38 3.1c.14.08.14.26 0 .34z" />
+                        </svg>
+                    </a>
+                    <a href="#" aria-label="TikTok">
+                        <svg fill="currentColor" viewBox="0 0 24 24" width="24" height="24">
+                            <path
+                                d="M21 7.91v8.18c0 1.25-.97 2.27-2.18 2.27A2.18 2.18 0 0 1 16.64 16.3V6.9a.46.46 0 0 0-.46-.46h-3.48a.46.46 0 0 0-.46.46v9.43a2.18 2.18 0 0 1-2.18 2.27 2.18 2.18 0 0 1-2.18-2.27V9.75a.46.46 0 0 0-.46-.46H4.46a.46.46 0 0 0-.46.46v6.54a4.18 4.18 0 0 0 4.18 4.18 4.18 4.18 0 0 0 4.18-4.18V8.37a4.18 4.18 0 0 0 4.18-4.18 4.18 4.18 0 0 0 4.18 4.18" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="products.js"></script>
+    <script src="cart.js"></script>
+    <script>
+        // ----------------------------------------------------
+        // 1. BANCO DE DADOS DE PRODUTOS
+        // (Carregado via products.js)
+        // ----------------------------------------------------
+
+
+        // ----------------------------------------------------
+        // 2. SCRIPT DE FILTRAGEM, BUSCA E PAGINAÇÃO
+        // ----------------------------------------------------
+        document.addEventListener('DOMContentLoaded', () => {
+            const PRODUCTS_PER_PAGE = 8;
+            let productsShown = 0;
+
+            const productContainer = document.getElementById('product-container');
+            const genderFilters = document.querySelectorAll('.gender-filter');
+            const otherFilters = document.querySelectorAll('.other-filter');
+            const typeFilters = document.querySelectorAll('.type-filter');
+            const notFoundMessage = document.getElementById('not-found');
+            const loadMoreButtonContainer = document.getElementById('load-more-container');
+            const loadMoreButton = document.getElementById('load-more-button');
+            const searchResultsDropdown = document.getElementById('search-results-dropdown');
+            const searchInput = document.getElementById('main-search-input');
+            const navSearchInput = document.getElementById('nav-search-input');
+
+            // Modal Elements
+            const openModalBtns = document.querySelectorAll('#open-contact-modal');
+            const closeModalBtn = document.getElementById('close-contact-modal');
+            const modal = document.getElementById('contact-modal');
+
+
+            let activeTypeFilter = 'all';
+            let currentSearchTerm = '';
+            let filteredProductsList = [];
+
+            // ----------------------------------------------------
+            // FUNÇÃO DE GERAÇÃO DE CARTÕES (Inicial e Filtro)
+            // ----------------------------------------------------
+            const generateProductCard = (product) => {
+                const formattedPrice = product.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+
+                const card = document.createElement('div');
+                card.classList.add('product-card');
+                card.setAttribute('data-category', product.category);
+                card.setAttribute('data-type', product.type);
+                card.setAttribute('data-id', product.id);
+
+                // Conteúdo interno do cartão
+                card.innerHTML = `
+                <div class="product-image-box">
+                    <a href="produto.html?id=${product.id}"><img src="${product.imagePath}" alt="${product.name}" class="product-image"></a>
+                </div>
+                <h3 class="product-name">${product.name}</h3>
+                <p class="product-price">${formattedPrice}</p>
+                <span class="product-installments">3x de R$ ${(product.price / 3).toFixed(2).replace('.', ',')} sem juros</span>
+            `;
+                return card;
+            };
+
+            // ----------------------------------------------------
+            // FUNÇÃO DE PAGINAÇÃO: Exibe os próximos N produtos
+            // ----------------------------------------------------
+            const showMoreProducts = () => {
+                const productsToLoad = filteredProductsList.slice(productsShown, productsShown + PRODUCTS_PER_PAGE);
+
+                productsToLoad.forEach(card => {
+                    card.style.display = 'flex';
+                    // Garante que o cartão é inserido antes do botão "Ver Mais"
+                    productContainer.insertBefore(card, loadMoreButtonContainer);
+                });
+
+                productsShown += productsToLoad.length;
+
+                if (productsShown >= filteredProductsList.length) {
+                    loadMoreButtonContainer.style.display = 'none';
+                } else {
+                    loadMoreButtonContainer.style.display = 'block';
+                }
+            };
+
+            // ----------------------------------------------------
+            // FUNÇÃO DE RENDERIZAÇÃO: Resultados da Busca (Dropdown)
+            // ----------------------------------------------------
+            const renderSearchResults = (searchTerm) => {
+                const resultsHtml = [];
+                const term = searchTerm.toLowerCase().trim();
+
+                if (term.length === 0) {
+                    searchResultsDropdown.style.display = 'none';
+                    return;
+                }
+
+                let foundCount = 0;
+                PRODUCTS_FOR_HOME.forEach(product => {
+                    if (foundCount >= 6) return;
+
+                    const productName = product.name;
+                    const productImageSrc = product.imagePath;
+                    const formattedPrice = product.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+
+                    if (productName.toLowerCase().includes(term)) {
+                        resultsHtml.push(`
+                        <a href="produto.html?id=${product.id}" class="search-result-item">
+                            <img src="${productImageSrc}" alt="${productName}">
+                            <div>
+                                <p>${productName}</p>
+                                <p style="font-weight: 700; color: #111827;">${formattedPrice}</p>
+                            </div>
+                        </a>
+                    `);
+                        foundCount++;
+                    }
+                });
+
+                if (resultsHtml.length > 0) {
+                    searchResultsDropdown.innerHTML = resultsHtml.join('');
+                    searchResultsDropdown.style.display = 'block';
+                } else {
+                    searchResultsDropdown.innerHTML = `<div class="search-result-item"><p>Nenhum resultado encontrado.</p></div>`;
+                    searchResultsDropdown.style.display = 'block';
+                }
+            };
+
+
+            // ----------------------------------------------------
+            // FUNÇÃO PRINCIPAL: Aplica Filtros, Busca e Paginação
+            // ----------------------------------------------------
+            const applyFilter = () => {
+                productsShown = 0;
+                filteredProductsList = [];
+
+                const activeGenderFilters = Array.from(genderFilters)
+                    .filter(checkbox => checkbox.checked)
+                    .map(checkbox => checkbox.value);
+
+                const activeOtherFilters = Array.from(otherFilters)
+                    .filter(checkbox => checkbox.checked)
+                    .map(checkbox => checkbox.value);
+
+                // 1. Limpa o container DOM e reinicia o HTML fixo
+                productContainer.innerHTML = '';
+                productContainer.appendChild(notFoundMessage);
+                productContainer.appendChild(loadMoreButtonContainer);
+
+
+                // 2. Itera sobre os dados dos produtos e verifica os filtros
+                const currentSearch = currentSearchTerm;
+
+                PRODUCTS_FOR_HOME.forEach(product => {
+                    let passesGenderFilter = true;
+                    let passesTypeFilter = true;
+                    let passesOtherFilter = true;
+                    let passesSearchFilter = true;
+
+                    // A. Checa o filtro de GÊNERO
+                    if (activeGenderFilters.length > 0) {
+                        passesGenderFilter = activeGenderFilters.includes(product.category);
+                    }
+
+                    // B. Checa o filtro de TIPO
+                    if (activeTypeFilter !== 'all') {
+                        passesTypeFilter = product.type === activeTypeFilter;
+                    }
+
+                    // C. Checa o filtro de OUTRAS CATEGORIAS
+                    if (activeOtherFilters.length > 0) {
+                        passesOtherFilter = activeOtherFilters.includes(product.category);
+                    }
+
+                    // D. Checa a BUSCA por NOME
+                    if (currentSearch) {
+                        passesSearchFilter = product.name.toLowerCase().includes(currentSearch);
+                    }
+
+                    if (passesGenderFilter && passesTypeFilter && passesOtherFilter && passesSearchFilter) {
+                        const cardElement = generateProductCard(product);
+                        filteredProductsList.push(cardElement);
+                    }
+                });
+
+                // 3. Aplica a paginação na lista filtrada (populando o DOM)
+                showMoreProducts();
+
+                // 4. Gerencia a mensagem "Não Encontrado"
+                if (filteredProductsList.length === 0) {
+                    notFoundMessage.style.display = 'block';
+                } else {
+                    notFoundMessage.style.display = 'none';
+                }
+            };
+
+            // --- LISTENERS ---
+
+            loadMoreButton.addEventListener('click', showMoreProducts);
+
+            // 🚨 CORREÇÃO DE MODAL: Unifica os listeners para o FALE CONOSCO 🚨
+            openModalBtns.forEach(btn => {
+                btn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    modal.style.display = 'flex';
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+
+            // Eventos do modal
+            if (closeModalBtn) {
+                closeModalBtn.addEventListener('click', function () {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = '';
+                });
+            }
+            if (modal) {
+                modal.addEventListener('click', function (e) {
+                    if (e.target === modal) {
+                        modal.style.display = 'none';
+                        document.body.style.overflow = '';
+                    }
+                });
+            }
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && modal && modal.style.display === 'flex') {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = '';
+                }
+            });
+            // 🚨 FIM DA CORREÇÃO DE MODAL 🚨
+
+
+            document.addEventListener('click', (e) => {
+                if (searchResultsDropdown && !searchResultsDropdown.contains(e.target) && e.target !== searchInput) {
+                    searchResultsDropdown.style.display = 'none';
+                }
+            });
+
+            document.querySelectorAll('.gender-filter, .other-filter').forEach(checkbox => {
+                checkbox.addEventListener('change', applyFilter);
+            });
+            typeFilters.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    activeTypeFilter = this.getAttribute('data-filter-type');
+
+                    document.querySelectorAll('.gender-filter, .other-filter').forEach(checkbox => {
+                        checkbox.checked = false;
+                    });
+
+                    currentSearchTerm = '';
+                    if (searchInput) searchInput.value = '';
+                    if (navSearchInput) navSearchInput.value = '';
+
+                    applyFilter();
+                });
+            });
+
+            const updateSearch = (e) => {
+                currentSearchTerm = e.target.value.toLowerCase().trim();
+
+                if (e.target.id === 'main-search-input') {
+                    renderSearchResults(e.target.value);
+                } else {
+                    searchResultsDropdown.style.display = 'none';
+                }
+
+                applyFilter();
+            };
+
+            if (searchInput) {
+                searchInput.addEventListener('input', updateSearch);
+                searchInput.parentElement.addEventListener('submit', (e) => e.preventDefault());
+            }
+            if (navSearchInput) {
+                navSearchInput.addEventListener('input', updateSearch);
+                navSearchInput.parentElement.addEventListener('submit', (e) => e.preventDefault());
+            }
+
+            // Inicializa o carregamento dos produtos
+            applyFilter();
+        });
+    </script>
+</body>
+
+</html>

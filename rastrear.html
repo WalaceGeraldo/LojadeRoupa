@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rastrear Pedido | Poisson Modas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+    .page-content {
+        min-height: 50vh;
+        padding: 50px 0;
+    }
+    .rastreio-box {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 40px;
+        background: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        border: 1px solid #e5e7eb;
+    }
+    .rastreio-box h1 {
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: 28px;
+        color: #111827;
+    }
+</style>
+</head>
+<body>
+<header class="site-header">
+<div class="container">
+<a href="index.html" class="brand logo-text">₱Øł₴₴Ø₦</a>
+<input type="checkbox" id="menu-toggle" class="menu-toggle">
+<label for="menu-toggle" class="menu-button">
+<span></span>
+<span></span>
+<span></span>
+</label>
+<form class="search-bar header-search" role="search" aria-label="Busca de produtos" style="display:none;">
+    <input type="search" placeholder="Buscar por roupa..." aria-label="Buscar por roupa">
+    <button type="submit" aria-label="Pesquisar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M15.5 15.5l5.2 5.2"/>
+            <path d="M17 10a7 7 0 10-14 0 7 7 0 0014 0z"/>
+        </svg>
+    </button>
+</form>
+<nav class="nav" aria-label="Menu principal">
+    <a href="index.html">Novidades</a>
+    <a href="masculino.html">Masculino</a>
+    <a href="feminino.html">Feminino</a>
+    <a href="promoçoes.html">Promoções</a>
+    <a href="contato.html">Contato</a>
+</nav>
+<a href="carrinho.html" class="cart-icon" aria-label="Carrinho de Compras">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+        <path d="M3 6h18"/>
+        <path d="M16 10a4 4 0 01-8 0"/>
+    </svg>
+</a>
+</div>
+</header>
+<main class="container page-content">
+    <div class="rastreio-box">
+        <h1>Acompanhe seu Pedido</h1>
+        <p style="text-align: center; margin-bottom: 25px; color: #4b5563;">Insira o código de rastreio completo que você recebeu por e-mail após a postagem do seu pedido.</p>
+        
+        <form>
+            <div style="margin-bottom: 20px;">
+                <label for="codigo" style="display: block; margin-bottom: 8px; font-weight: 600;">Código de Rastreamento:</label>
+                <input type="text" id="codigo" placeholder="Ex: AB123456789BR" style="width: 100%; padding: 12px; border: 2px solid #ccc; border-radius: 6px; font-size: 16px;" required>
+            </div>
+            <button type="submit" class="cta" style="width: 100%; padding: 12px 0;">Rastrear</button>
+        </form>
+        
+        <p style="text-align: center; margin-top: 30px; font-size: 14px; color: #6b7280;">Se o seu código não funcionar, verifique seu e-mail ou entre em contato com o suporte.</p>
+    </div>
+</main>
+<footer class="site-footer"></footer>
+<script>
+    // Script para carregar o cabeçalho e o rodapé da página principal para manter a consistência visual.
+    const copyContent = (selector, target) => {
+        try {
+            const content = window.opener.document.querySelector(selector)?.innerHTML;
+            if (content) {
+                document.querySelector(target).innerHTML = content;
+            }
+        } catch (e) {
+            // Ignora erro se a página não foi aberta via window.open ou se o mesmo-origem não for atendido
+        }
+    };
+    copyContent('header.site-header', 'header.site-header');
+    copyContent('footer.site-footer', 'footer.site-footer');
+</script>
+</body>
+</html>

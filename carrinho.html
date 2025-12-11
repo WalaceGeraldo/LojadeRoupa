@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Carrinho de Compras | Poisson Modas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .cart-page {
+            padding: 50px 0;
+            min-height: 60vh;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .cart-item img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .item-details {
+            flex-grow: 1;
+            padding: 0 20px;
+        }
+
+        .item-details h3 {
+            font-size: 16px;
+            margin: 0 0 5px 0;
+        }
+
+        .item-details p {
+            margin: 0;
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        .item-price {
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .remove-btn {
+            background: none;
+            border: none;
+            color: #ef4444;
+            cursor: pointer;
+            font-size: 14px;
+            margin-left: 15px;
+            text-decoration: underline;
+        }
+
+        .cart-summary {
+            max-width: 400px;
+            margin-left: auto;
+            padding: 20px;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            background: #ffffff;
+            margin-top: 30px;
+        }
+
+        .cart-summary h2 {
+            border-bottom: 2px solid #111827;
+            padding-bottom: 10px;
+            font-size: 20px;
+            margin-top: 0;
+        }
+
+        .cart-summary div {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            color: #4b5563;
+        }
+
+        .cart-summary .total {
+            font-size: 1.2em;
+            font-weight: 700;
+            padding-top: 10px;
+            border-top: 1px dashed #d1d5db;
+            color: #111827;
+        }
+
+        .cart-summary .cta {
+            width: 100%;
+            margin-top: 15px;
+            text-align: center;
+            display: inline-block;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="container">
+            <a href="index.html" class="brand logo-text">₱Øł₴₴Ø₦</a>
+            <input type="checkbox" id="menu-toggle" class="menu-toggle">
+            <label for="menu-toggle" class="menu-button">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+            <nav class="nav" aria-label="Menu principal">
+                <a href="index.html">Novidades</a>
+                <a href="masculino.html">Masculino</a>
+                <a href="feminino.html">Feminino</a>
+                <a href="promoçoes.html">Promoções</a>
+                <a href="contato.html">Contato</a>
+            </nav>
+            <a href="carrinho.html" class="cart-icon" aria-label="Carrinho de Compras" style="margin-left: auto;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
+                    <path d="M3 6h18" />
+                    <path d="M16 10a4 4 0 01-8 0" />
+                </svg>
+                <span id="cart-count" style="font-size: 12px; font-weight: bold; margin-left: 5px;"></span>
+            </a>
+        </div>
+    </header>
+
+    <main class="container cart-page">
+        <h1>Seu Carrinho de Compras</h1>
+
+        <div id="cart-items-container" class="cart-items">
+            <!-- Itens inseridos via JS -->
+        </div>
+
+        <div id="empty-cart-msg" style="display: none; text-align: center; color: #6b7280; padding: 40px;">
+            <p>Seu carrinho está vazio.</p>
+            <p style="margin-top: 10px;"><a href="index.html" style="color: #111827; text-decoration: underline;">Voltar
+                    para as compras</a>.</p>
+        </div>
+
+        <div id="cart-resumo" class="cart-summary" style="display: none;">
+            <h2>Resumo do Pedido</h2>
+            <div>
+                <span>Subtotal:</span>
+                <span id="subtotal-val">R$ 0,00</span>
+            </div>
+            <div>
+                <span>Frete:</span>
+                <span style="color: #059669;">Grátis</span>
+            </div>
+            <div class="total">
+                <span>Total:</span>
+                <span id="total-val">R$ 0,00</span>
+            </div>
+            <a href="checkout.html" class="cta">Finalizar Compra</a>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container" style="padding: 40px 0; text-align: center; color: #6b7280;">
+            <p>&copy; 2024 Poisson Modas. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="cart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('cart-items-container');
+            const emptyMsg = document.getElementById('empty-cart-msg');
+            const summary = document.getElementById('cart-resumo');
+            const subtotalEl = document.getElementById('subtotal-val');
+            const totalEl = document.getElementById('total-val');
+            const cartCountEl = document.getElementById('cart-count');
+
+            function renderCart() {
+                const items = Cart.getItems();
+
+                // Atualiza contador
+                if (cartCountEl) cartCountEl.textContent = items.length > 0 ? `(${items.length})` : '';
+
+                if (items.length === 0) {
+                    container.innerHTML = '';
+                    emptyMsg.style.display = 'block';
+                    summary.style.display = 'none';
+                    return;
+                }
+
+                emptyMsg.style.display = 'none';
+                summary.style.display = 'block';
+                container.innerHTML = '';
+
+                items.forEach((item, index) => {
+                    const itemEl = document.createElement('div');
+                    itemEl.classList.add('cart-item');
+
+                    const priceFormatted = item.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+
+                    itemEl.innerHTML = `
+                    <div style="display: flex; align-items: center; flex-grow: 1;">
+                        <img src="${item.imagePath}" alt="${item.name}">
+                        <div class="item-details">
+                            <h3>${item.name}</h3>
+                            <p>${item.type} | ${item.category}</p>
+                        </div>
+                    </div>
+                    <div style="text-align: right;">
+                        <span class="item-price">${priceFormatted}</span>
+                        <div style="margin-top: 5px;">
+                             <button class="remove-btn" data-id="${item.cartId}">Remover</button>
+                        </div>
+                    </div>
+                `;
+                    container.appendChild(itemEl);
+                });
+
+                // Listeners de remoção
+                document.querySelectorAll('.remove-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const cartId = e.target.getAttribute('data-id');
+                        Cart.remove(cartId);
+                        renderCart();
+                    });
+                });
+
+                // Atualiza totais
+                const total = Cart.total();
+                const totalFormatted = total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+                subtotalEl.textContent = totalFormatted;
+                totalEl.textContent = totalFormatted;
+            }
+
+            renderCart();
+        });
+    </script>
+</body>
+
+</html>

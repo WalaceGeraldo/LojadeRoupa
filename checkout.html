@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Checkout | Finalizar Compra | Poisson Modas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .checkout-page {
+            padding: 50px 0;
+            min-height: 80vh;
+        }
+
+        .checkout-page h1 {
+            margin-bottom: 30px;
+        }
+
+        .checkout-form {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .order-summary {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #e5e7eb;
+            height: fit-content;
+        }
+
+        .order-summary h2 {
+            font-size: 20px;
+            margin-top: 0;
+            border-bottom: 1px solid #e5e7eb;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        .order-summary .cta {
+            width: 100%;
+            margin-top: 20px;
+            background: #10b981;
+            /* Cor de sucesso */
+            border: none;
+            padding: 15px;
+            color: white;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .order-summary .cta:hover {
+            background-color: #059669;
+        }
+
+        .order-item-mini {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            margin-bottom: 8px;
+            color: #4b5563;
+        }
+
+        @media (max-width: 900px) {
+            .checkout-form {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .payment-options {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .payment-option-label {
+            border: 1px solid #ccc;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            flex: 1;
+            text-align: center;
+        }
+
+        .payment-option-label:hover {
+            background-color: #f9fafb;
+        }
+
+        .payment-option-label.active {
+            border-color: #111827;
+            background-color: #f3f4f6;
+            font-weight: 600;
+        }
+
+        .payment-content {
+            border: 1px solid #e5e7eb;
+            padding: 20px;
+            border-radius: 4px;
+            background: #f9fafb;
+            margin-top: 15px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .qr-code-img,
+        .barcode-img {
+            display: block;
+            margin: 0 auto;
+            max-width: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="container">
+            <a href="index.html" class="brand logo-text">₱Øł₴₴Ø₦</a>
+            <input type="checkbox" id="menu-toggle" class="menu-toggle">
+            <label for="menu-toggle" class="menu-button">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+            <nav class="nav" aria-label="Menu principal">
+                <a href="index.html">Novidades</a>
+                <a href="masculino.html">Masculino</a>
+                <a href="feminino.html">Feminino</a>
+                <a href="promoçoes.html">Promoções</a>
+                <a href="contato.html">Contato</a>
+            </nav>
+            <a href="carrinho.html" class="cart-icon" aria-label="Carrinho de Compras" style="margin-left: auto;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
+                    <path d="M3 6h18" />
+                    <path d="M16 10a4 4 0 01-8 0" />
+                </svg>
+            </a>
+        </div>
+    </header>
+    <main class="container checkout-page">
+        <h1>Finalizar Compra</h1>
+        <div class="checkout-form">
+            <div class="shipping-info">
+                <h2>1. Informações de Entrega</h2>
+                <form id="checkout-form">
+                    <div class="form-group">
+                        <label for="cep">CEP</label>
+                        <input type="text" id="cep" required placeholder="00000-000">
+                    </div>
+                    <div class="form-group">
+                        <label for="endereco">Endereço</label>
+                        <input type="text" id="endereco" required placeholder="Rua, Avenida...">
+                    </div>
+                    <div class="form-group">
+                        <label for="numero">Número</label>
+                        <input type="text" id="numero" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="complemento">Complemento (Opcional)</label>
+                        <input type="text" id="complemento">
+                    </div>
+                    <div class="form-group">
+                        <label for="cidade">Cidade</label>
+                        <input type="text" id="cidade" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="estado">Estado</label>
+                        <select id="estado" required>
+                            <option value="">Selecione</option>
+                            <option value="SP">SP</option>
+                            <option value="RJ">RJ</option>
+                            <option value="MG">MG</option>
+                            <option value="RS">RS</option>
+                            <option value="PR">PR</option>
+                            <!-- Outros estados -->
+                        </select>
+                    </div>
+
+                    <h2>2. Forma de Pagamento</h2>
+                    <div class="form-group">
+                        <label>Selecione a opção de pagamento:</label>
+                        <div class="payment-options">
+                            <label class="payment-option-label">
+                                <input type="radio" name="pagamento" value="credit" checked hidden>
+                                Cartão de Crédito
+                            </label>
+                            <label class="payment-option-label">
+                                <input type="radio" name="pagamento" value="boleto" hidden>
+                                Boleto
+                            </label>
+                            <label class="payment-option-label">
+                                <input type="radio" name="pagamento" value="pix" hidden>
+                                PIX
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Conteúdo Cartão -->
+                    <div id="credit-content" class="payment-content">
+                        <h3>Dados do Cartão</h3>
+                        <div class="form-group">
+                            <label>Número do Cartão</label>
+                            <input type="text" placeholder="0000 0000 0000 0000" maxlength="19">
+                        </div>
+                        <div class="form-group" style="display: flex; gap: 10px;">
+                            <div style="flex:1">
+                                <label>Validade</label>
+                                <input type="text" placeholder="MM/AA" maxlength="5">
+                            </div>
+                            <div style="flex:1">
+                                <label>CVV</label>
+                                <input type="text" placeholder="123" maxlength="3">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Nome no Cartão</label>
+                            <input type="text" placeholder="Como impresso no cartão">
+                        </div>
+                        <div class="form-group">
+                            <label>Parcelamento</label>
+                            <select id="installments-select">
+                                <!-- Preenchido via JS -->
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Conteúdo Boleto -->
+                    <div id="boleto-content" class="payment-content hidden" style="text-align: center;">
+                        <h3>Boleto Bancário</h3>
+                        <p>Pagamento à vista. O boleto será gerado após a confirmação.</p>
+                        <img src="imagens/checkout/boleto_barcode.png" alt="Código de Barras" class="barcode-img">
+                        <p style="font-family: monospace; letter-spacing: 2px; margin-top: 10px;">34191.79001
+                            01043.510047 91020.150008 5 89820000260000</p>
+                    </div>
+
+                    <!-- Conteúdo PIX -->
+                    <div id="pix-content" class="payment-content hidden" style="text-align: center;">
+                        <h3>Pagamento via PIX</h3>
+                        <p>Escaneie o QR Code abaixo com o app do seu banco:</p>
+                        <img src="imagens/checkout/pix_qr.png" alt="QR Code PIX" class="qr-code-img">
+                        <p style="font-size: 12px; margin-top: 10px; color: #6b7280;">Aprovação imediata</p>
+                    </div>
+                    <p style="font-size: 14px; color: #6b7280;">Ao clicar em "Pagar agora", você concorda com os termos
+                        e condições.</p>
+                    <button type="submit" class="cta">Pagar Agora</button>
+                </form>
+            </div>
+
+            <div class="order-summary" id="order-summary-box">
+                <h2>Seu Pedido</h2>
+                <div id="mini-cart-list"
+                    style="margin-bottom: 20px; border-bottom: 1px dashed #e5e7eb; padding-bottom: 10px;">
+                    <!-- Lista de itens -->
+                </div>
+
+                <div>
+                    <div style="margin-bottom: 5px; display:flex; justify-content:space-between;"><span>Subtotal:</span>
+                        <span id="checkout-subtotal">R$ 0,00</span>
+                    </div>
+                    <div style="margin-bottom: 5px; display:flex; justify-content:space-between;"><span>Frete:</span>
+                        <span style="color: #059669;">Grátis</span>
+                    </div>
+                    <div
+                        style="font-weight: 700; border-top: 1px solid #d1d5db; padding-top: 10px; margin-top: 10px; display:flex; justify-content:space-between;">
+                        <span>Total:</span> <span id="checkout-total">R$ 0,00</span>
+                    </div>
+                </div>
+
+                <div style="margin-top: 30px;">
+                    <p style="font-weight: 600;">Formas de pagamento:</p>
+                    <div style="display: flex; gap: 10px; margin-top: 10px;">
+                        <span style="background:#eee; padding:5px; border-radius:4px; font-size:12px;">Visa</span>
+                        <span style="background:#eee; padding:5px; border-radius:4px; font-size:12px;">Master</span>
+                        <span style="background:#eee; padding:5px; border-radius:4px; font-size:12px;">Pix</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="site-footer">
+        <div class="container" style="padding: 40px 0; text-align: center; color: #6b7280;">
+            <p>&copy; 2024 Poisson Modas. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="cart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const listContainer = document.getElementById('mini-cart-list');
+            const subtotalEl = document.getElementById('checkout-subtotal');
+            const totalEl = document.getElementById('checkout-total');
+            const count = Cart.count();
+
+            if (count === 0) {
+                alert('Seu carrinho está vazio! Redirecionando...');
+                window.location.href = 'index.html';
+                return;
+            }
+
+            const items = Cart.getItems();
+            const total = Cart.total();
+            const totalFormatted = total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+
+            items.forEach(item => {
+                const div = document.createElement('div');
+                div.classList.add('order-item-mini');
+                div.innerHTML = `<span>${item.name}</span> <span>${item.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span>`;
+                listContainer.appendChild(div);
+            });
+
+            subtotalEl.textContent = totalFormatted;
+            totalEl.textContent = totalFormatted;
+
+            // Form Submit original
+            document.getElementById('checkout-form').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const btn = e.target.querySelector('button[type="submit"]');
+                btn.textContent = 'Processando...';
+                btn.disabled = true;
+
+                setTimeout(() => {
+                    alert('Compra realizada com sucesso! Obrigado pela preferência.');
+                    Cart.clear();
+                    window.location.href = 'index.html';
+                }, 2000);
+            });
+
+            // Lógica de Pagamento
+            const paymentRadios = document.getElementsByName('pagamento');
+            const creditContent = document.getElementById('credit-content');
+            const boletoContent = document.getElementById('boleto-content');
+            const pixContent = document.getElementById('pix-content');
+            const installmentSelect = document.getElementById('installments-select');
+            const labels = document.querySelectorAll('.payment-option-label');
+
+            function updatePaymentDisplay() {
+                let selected = 'credit';
+                paymentRadios.forEach(r => { if (r.checked) selected = r.value; });
+
+                creditContent.classList.add('hidden');
+                boletoContent.classList.add('hidden');
+                pixContent.classList.add('hidden');
+
+                labels.forEach(l => {
+                    l.classList.remove('active');
+                    if (l.querySelector('input').checked) l.classList.add('active');
+                });
+
+                if (selected === 'credit') creditContent.classList.remove('hidden');
+                if (selected === 'boleto') boletoContent.classList.remove('hidden');
+                if (selected === 'pix') pixContent.classList.remove('hidden');
+
+                // Se não for crédito, reseta o total para o valor à vista original (sem juros)
+                const submitBtn = document.querySelector('#checkout-form button[type="submit"]');
+
+                if (selected !== 'credit') {
+                    totalEl.textContent = totalFormatted;
+                } else {
+                    // Recalcula o total baseado na parcela selecionada (caso já tenha selecionado)
+                    updateTotalFromInstallment();
+                }
+
+                if (selected === 'boleto') {
+                    submitBtn.textContent = 'Gerar Código de Barras';
+                } else if (selected === 'pix') {
+                    submitBtn.textContent = 'Gerar QR Code';
+                } else {
+                    submitBtn.textContent = 'Pagar Agora';
+                }
+            }
+
+            paymentRadios.forEach(radio => radio.addEventListener('change', updatePaymentDisplay));
+            updatePaymentDisplay(); // Init
+
+            // Preencher Parcelamento
+            // Lógica: Se >= 3 parcelas, +10% de juros no Total
+            const generateInstallments = () => {
+                installmentSelect.innerHTML = '';
+
+                // Opção 1x (À vista)
+                const opt1 = document.createElement('option');
+                opt1.value = 1;
+                opt1.textContent = `1x de ${total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })} sem juros`;
+                installmentSelect.appendChild(opt1);
+
+                // Opção 2x (À vista / 2)
+                if (total > 0) {
+                    const val2x = total / 2;
+                    const opt2 = document.createElement('option');
+                    opt2.value = 2;
+                    opt2.textContent = `2x de ${val2x.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })} sem juros`;
+                    installmentSelect.appendChild(opt2);
+                }
+
+                // Opções 3x até 12x (Com juros de 10% sobre o total)
+                // Obs: O juros é fixo de 10% se parcelar em 3x ou mais, independente do número de parcelas, conforme solicitado "a partir de 3 parcela crie 10% de juros"
+                const totalWithInterest = total * 1.10;
+
+                for (let i = 3; i <= 12; i++) {
+                    const val = totalWithInterest / i;
+                    const opt = document.createElement('option');
+                    opt.value = i;
+                    opt.textContent = `${i}x de ${val.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })} (Total: ${totalWithInterest.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })})`;
+                    installmentSelect.appendChild(opt);
+                }
+            };
+
+            function updateTotalFromInstallment() {
+                const parcels = parseInt(installmentSelect.value);
+                if (parcels >= 3) {
+                    const totalWithInterest = total * 1.10;
+                    totalEl.textContent = totalWithInterest.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+                } else {
+                    totalEl.textContent = totalFormatted;
+                }
+            }
+
+            generateInstallments();
+            installmentSelect.addEventListener('change', updateTotalFromInstallment);
+        });
+    </script>
+</body>
+
+</html>

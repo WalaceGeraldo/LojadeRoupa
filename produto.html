@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Produto | Poisson Modas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .product-detail-page {
+            padding: 40px 0;
+        }
+
+        .product-detail-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .product-gallery {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .main-image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .thumbnail-list {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+        }
+
+        .thumbnail {
+            width: 80px;
+            height: 80px;
+            border-radius: 4px;
+            cursor: pointer;
+            object-fit: cover;
+            opacity: 0.6;
+            transition: opacity 0.2s;
+            border: 1px solid #ddd;
+        }
+
+        .thumbnail:hover,
+        .thumbnail.active {
+            opacity: 1;
+            border-color: #111827;
+        }
+
+        .product-info h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .product-info .price {
+            font-size: 28px;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 5px;
+        }
+
+        .product-info .installments {
+            font-size: 16px;
+            color: #6b7280;
+            margin-bottom: 25px;
+            display: block;
+        }
+
+        .product-section {
+            margin-bottom: 25px;
+            padding-top: 20px;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .product-section h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .color-selector span {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-right: 10px;
+            cursor: pointer;
+            border: 1px solid #ddd;
+        }
+
+        .btn-buy {
+            width: 100%;
+            padding: 15px;
+            background-color: #111827;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-top: 20px;
+        }
+
+        .btn-buy:hover {
+            background-color: #374151;
+        }
+
+        .shipping-calc {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .shipping-calc input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            flex-grow: 1;
+        }
+
+        .shipping-calc button {
+            padding: 10px 20px;
+            background: #f3f4f6;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #shipping-result {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #111827;
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .product-detail-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .quantity-selector button {
+            width: 35px;
+            height: 35px;
+            border: 1px solid #d1d5db;
+            background: #fff;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 18px;
+            color: #111827;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .quantity-selector button:hover {
+            background: #f3f4f6;
+            border-color: #9ca3af;
+        }
+
+        .quantity-selector span {
+            font-size: 18px;
+            font-weight: 600;
+            min-width: 30px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header (Copiado do index.html para consistência) -->
+    <header class="site-header">
+        <div class="container">
+            <a href="index.html" class="brand logo-text">₱Øł₴₴Ø₦</a>
+            <input type="checkbox" id="menu-toggle" class="menu-toggle">
+            <label for="menu-toggle" class="menu-button">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+            <nav class="nav" aria-label="Menu principal">
+                <a href="index.html">Novidades</a>
+                <a href="masculino.html">Masculino</a>
+                <a href="feminino.html">Feminino</a>
+                <a href="promoçoes.html">Promoções</a>
+                <a href="contato.html">Contato</a>
+            </nav>
+            <a href="carrinho.html" class="cart-icon" aria-label="Carrinho de Compras" style="margin-left: auto;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
+                    <path d="M3 6h18" />
+                    <path d="M16 10a4 4 0 01-8 0" />
+                </svg>
+                <span id="cart-count" style="font-size: 12px; font-weight: bold; margin-left: 5px;"></span>
+            </a>
+        </div>
+    </header>
+
+    <main class="container product-detail-page">
+        <div id="loading" style="text-align: center; padding: 50px;">Carregando produto...</div>
+
+        <div id="product-content" class="product-detail-container" style="display: none;">
+            <div class="product-gallery">
+                <img id="main-img" src="" alt="Produto" class="main-image">
+                <div class="thumbnail-list" id="thumbnail-list">
+                    <!-- Thumbnails geradas via JS -->
+                </div>
+            </div>
+
+            <div class="product-info">
+                <h1 id="prod-name">Nome do Produto</h1>
+                <p id="prod-price" class="price">R$ 0,00</p>
+                <span id="prod-installments" class="installments">3x de R$ 0,00 sem juros</span>
+
+                <div class="product-section">
+                    <h3>Descrição</h3>
+                    <p id="prod-desc" style="line-height: 1.6; color: #4b5563;">Descrição detalhada aqui.</p>
+                    <p id="prod-material" style="margin-top: 10px; font-size: 14px; color: #6b7280;">Material: -</p>
+                </div>
+
+                <div class="product-section">
+                    <h3>Quantidade</h3>
+                    <div class="quantity-selector">
+                        <button id="qty-minus">−</button>
+                        <span id="qty-val">1</span>
+                        <button id="qty-plus">+</button>
+                    </div>
+                </div>
+
+
+
+                <div class="product-section">
+                    <h3>Calcular Frete</h3>
+                    <div class="shipping-calc">
+                        <input type="text" id="cep-input" placeholder="Digite seu CEP" maxlength="9">
+                        <button id="calc-shipping-btn">Calcular</button>
+                    </div>
+                    <div id="shipping-result"></div>
+                </div>
+
+                <button id="buy-btn" class="btn-buy">COMPRAR AGORA</button>
+            </div>
+        </div>
+
+        <div id="error-message" class="not-found-message" style="display: none;">
+            Produto não encontrado. <a href="index.html">Voltar para a loja</a>.
+        </div>
+    </main>
+
+    <footer class="site-footer"></footer>
+
+    <!-- Importando Scripts Compartilhados -->
+    <script src="products.js"></script>
+    <script src="cart.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            try {
+                // 1. Footer e Contagem do Carrinho
+                const copyContent = (selector, target) => {
+                    try {
+                        // Tenta pegar do opener se existir (navegação via link _blank), senão não faz nada
+                        // Como aqui estamos na mesma janela, vamos apenas deixar o footer vazio ou copiar via fetch se fosse o caso
+                        // Para simplificar, vou deixar o footer vazio ou inserir o HTML básico se necessário.
+                        // Mas o user pediu design premium, então vamos assumir que o footer já existe no arquivo ou seria incluído via server-side.
+                        // Vou replicar o footer aqui via JS para não duplicar HTML gigante manualmente.
+                        // NA VERDADE, melhor apenas focar no produto. O footer fica vazio por enquanto ou placeholder.
+                    } catch (e) { }
+                };
+
+                function updateCartCount() {
+                    const count = Cart.count();
+                    const el = document.getElementById('cart-count');
+                    if (el) el.textContent = count > 0 ? `(${count})` : '';
+                }
+                updateCartCount();
+                window.addEventListener('cartUpdated', updateCartCount);
+
+                // 2. Lógica do Produto
+                const params = new URLSearchParams(window.location.search);
+                const productId = params.get('id');
+
+                const product = ALL_PRODUCTS_DATA.find(p => p.id === productId);
+
+                if (!product) {
+                    document.getElementById('loading').style.display = 'none';
+                    document.getElementById('error-message').style.display = 'block';
+                    return;
+                }
+
+                // Renderizar Detalhes
+                document.getElementById('main-img').src = product.imagePath;
+                document.getElementById('prod-name').textContent = product.name;
+                document.getElementById('prod-price').textContent = product.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+                document.getElementById('prod-installments').textContent = `3x de ${(product.price / 3).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })} sem juros`;
+                document.getElementById('prod-desc').textContent = product.description;
+                document.getElementById('prod-material').textContent = `Material: ${product.material}`;
+
+                // Renderizar Thumbnails (Simulando galeria -> repete a imagem principal algumas vezes pois não temos banco de imagens reais)
+                const thumbContainer = document.getElementById('thumbnail-list');
+                for (let i = 0; i < 4; i++) {
+                    const img = document.createElement('img');
+                    img.src = product.imagePath; // Usando a mesma imagem por falta de outras
+                    img.classList.add('thumbnail');
+                    if (i === 0) img.classList.add('active');
+                    img.addEventListener('click', () => {
+                        document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
+                        img.classList.add('active');
+                        document.getElementById('main-img').src = product.imagePath;
+                    });
+                    thumbContainer.appendChild(img);
+                }
+
+                // Renderizar Cores
+
+
+                // 3. Calculadora de Frete
+                document.getElementById('calc-shipping-btn').addEventListener('click', () => {
+                    const cep = document.getElementById('cep-input').value;
+                    const resultDiv = document.getElementById('shipping-result');
+                    if (cep.length >= 8) {
+                        resultDiv.textContent = "Frete Grátis para sua região! Chega em 3-5 dias úteis.";
+                        resultDiv.style.color = "#059669";
+                    } else {
+                        resultDiv.textContent = "Por favor, digite um CEP válido.";
+                        resultDiv.style.color = "#dc2626";
+                    }
+                });
+
+                // 4. Lógica de Quantidade
+                let quantity = 1;
+                const qtyVal = document.getElementById('qty-val');
+
+                document.getElementById('qty-minus').addEventListener('click', () => {
+                    if (quantity > 1) {
+                        quantity--;
+                        qtyVal.textContent = quantity;
+                    }
+                });
+
+                document.getElementById('qty-plus').addEventListener('click', () => {
+                    quantity++;
+                    qtyVal.textContent = quantity;
+                });
+
+                // 5. Botão Comprar (Adiciona N vezes)
+                document.getElementById('buy-btn').addEventListener('click', () => {
+                    for (let i = 0; i < quantity; i++) {
+                        Cart.add(product);
+                    }
+                    window.location.href = 'carrinho.html';
+                });
+
+                // Mostrar conteúdo
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('product-content').style.display = 'grid';
+
+                // Tentar copiar o footer da home se estiver em cache/memória (opcional, aqui vou deixar o script placeholder do footer)
+                const footerHTML = `
+            <div class="container" style="padding: 40px 0; text-align: center; color: #6b7280;">
+                <p>&copy; 2024 Poisson Modas. Todos os direitos reservados.</p>
+            </div>
+        `;
+                document.querySelector('.site-footer').innerHTML = footerHTML;
+
+            } catch (error) {
+                console.error(error);
+                document.getElementById('loading').textContent = 'Erro ao carregar produto: ' + error.message;
+            }
+        });
+    </script>
+</body>
+
+</html>

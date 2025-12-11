@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Denúncia de Uso Ilegal de Marcas | Poisson Modas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+    .denuncia-page {
+        padding: 50px 0;
+        line-height: 1.7;
+        min-height: 80vh;
+    }
+    .denuncia-page h1 {
+        font-size: 32px;
+        color: #cc0000; /* Cor de alerta */
+        margin-bottom: 30px;
+    }
+    .denuncia-page h2 {
+        font-size: 22px;
+        color: #111827;
+        margin-top: 35px;
+    }
+    .denuncia-page p {
+        color: #4b5563;
+        margin-bottom: 20px;
+    }
+    .denuncia-page ul {
+        padding-left: 25px;
+        list-style: square;
+        color: #4b5563;
+    }
+    .denuncia-page form {
+        max-width: 700px;
+        padding: 25px;
+        background: #f9fafb;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        margin-top: 20px;
+    }
+    .denuncia-page label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: #111827;
+    }
+    .denuncia-page input[type="text"], 
+    .denuncia-page input[type="email"], 
+    .denuncia-page textarea,
+    .denuncia-page select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        margin-bottom: 20px;
+    }
+    .denuncia-page .cta {
+        padding: 12px 20px;
+        background-color: #cc0000;
+    }
+    .denuncia-page .cta:hover {
+        background-color: #a00000;
+    }
+</style>
+</head>
+<body>
+<header class="site-header">
+<div class="container">
+<a href="index.html" class="brand logo-text">₱Øł₴₴Ø₦</a>
+<input type="checkbox" id="menu-toggle" class="menu-toggle">
+<label for="menu-toggle" class="menu-button">
+<span></span>
+<span></span>
+<span></span>
+</label>
+<form class="search-bar header-search" role="search" aria-label="Busca de produtos" style="display:none;">
+    <input type="search" placeholder="Buscar por roupa..." aria-label="Buscar por roupa">
+    <button type="submit" aria-label="Pesquisar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M15.5 15.5l5.2 5.2"/>
+            <path d="M17 10a7 7 0 10-14 0 7 7 0 0014 0z"/>
+        </svg>
+    </button>
+</form>
+<nav class="nav" aria-label="Menu principal">
+    <a href="index.html">Novidades</a>
+    <a href="masculino.html">Masculino</a>
+    <a href="feminino.html">Feminino</a>
+    <a href="promoçoes.html">Promoções</a>
+    <a href="contato.html">Contato</a>
+</nav>
+<a href="carrinho.html" class="cart-icon" aria-label="Carrinho de Compras">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+        <path d="M3 6h18"/>
+        <path d="M16 10a4 4 0 01-8 0"/>
+    </svg>
+</a>
+</div>
+</header>
+<main class="container denuncia-page">
+    <h1>Denuncie o Uso Ilegal de Marcas e Direitos Autorais</h1>
+
+    <p>A **Poisson** preza pela integridade de sua marca, designs e criações artísticas. O uso não autorizado de nossa propriedade intelectual é estritamente proibido e prejudica tanto a nossa empresa quanto o consumidor final.</p>
+    
+    <h2>Regras e Condições para Denúncia:</h2>
+    <ul>
+        <li>A denúncia deve ser fundamentada e se referir a produtos, logotipos, designs, estampas ou textos que imitem ou reproduzam diretamente nossa propriedade intelectual.</li>
+        <li>Garantimos total sigilo e anonimato ao denunciante.</li>
+        <li>Denúncias anônimas serão investigadas, mas pedimos o máximo de detalhes possível para agilizar o processo legal.</li>
+    </ul>
+
+    <h2>Como Denunciar:</h2>
+    <p>Utilize o formulário abaixo para nos fornecer os detalhes sobre a infração observada. Quanto mais informações, mais rápida será nossa ação legal.</p>
+
+    <form>
+        <label for="tipo">Tipo de Infração:</label>
+        <select id="tipo" required>
+            <option>Uso de Logotipo</option>
+            <option>Cópia de Estampa/Design</option>
+            <option>Venda de Produto Falsificado</option>
+            <option>Uso de Imagens de Produtos</option>
+            <option>Outro</option>
+        </select>
+        
+        <label for="link">Link da Loja/Plataforma onde a infração ocorre:</label>
+        <input type="url" id="link" placeholder="URL completa do site ou anúncio" required>
+
+        <label for="detalhes">Descrição detalhada da infração (local, data, produto):</label>
+        <textarea id="detalhes" rows="5" placeholder="Descreva o que foi copiado e onde o produto está sendo vendido." required></textarea>
+        
+        <label for="contato">Seu Email (Opcional, para feedback):</label>
+        <input type="email" id="contato" placeholder="seu.email@exemplo.com">
+
+        <button type="submit" class="cta">Enviar Denúncia</button>
+    </form>
+</main>
+<footer class="site-footer"></footer>
+<script>
+    // Script para carregar o cabeçalho e o rodapé da página principal para manter a consistência visual.
+    const copyContent = (selector, target) => {
+        try {
+            const content = window.opener.document.querySelector(selector)?.innerHTML;
+            if (content) {
+                document.querySelector(target).innerHTML = content;
+            }
+        } catch (e) {
+            // Ignora erro se a página não foi aberta via window.open ou se o mesmo-origem não for atendido
+        }
+    };
+    copyContent('header.site-header', 'header.site-header');
+    copyContent('footer.site-footer', 'footer.site-footer');
+</script>
+</body>
+</html>
