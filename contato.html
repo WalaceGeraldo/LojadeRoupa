@@ -9,115 +9,233 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <style>
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-top: 40px;
+            margin-bottom: 60px;
+        }
+
+        .contact-info {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .contact-form-container {
+            background: #f9fafb;
+            padding: 40px;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .contact-form-container h2 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #374151;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-family: inherit;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #111827;
+            outline: none;
+        }
+
+        .faq-section {
+            margin-top: 40px;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #e5e7eb;
+            padding: 15px 0;
+        }
+
+        .faq-question {
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #111827;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-answer {
+            color: #6b7280;
+            font-size: 15px;
+            display: none;
+            margin-top: 10px;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .faq-item.active .faq-question {
+            color: #2563eb;
+        }
+
+        @media (max-width: 900px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+    </style>
 </head>
 
 <body>
     <header class="site-header">
-        <div class="container">
-            <a href="index.html" class="brand logo-text">₱Øł₴₴Ø₦</a>
-            <input type="checkbox" id="menu-toggle" class="menu-toggle">
-            <label for="menu-toggle" class="menu-button">
-                <span></span>
-                <span></span>
-                <span></span>
-            </label>
-            <form class="search-bar header-search" role="search" aria-label="Busca de produtos">
-                <input type="search" placeholder="Buscar por roupa..." aria-label="Buscar por roupa">
-                <button type="submit" aria-label="Pesquisar">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path d="M15.5 15.5l5.2 5.2" />
-                        <path d="M17 10a7 7 0 10-14 0 7 7 0 0014 0z" />
-                    </svg>
-                </button>
-            </form>
-
-            <nav class="nav" aria-label="Menu principal">
-                <form class="search-bar nav-search" role="search">
-                    <input type="search" placeholder="Buscar por roupa..." aria-label="Buscar por roupa">
-                    <button type="submit" aria-label="Pesquisar">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M15.5 15.5l5.2 5.2" />
-                            <path d="M17 10a7 7 0 10-14 0 7 7 0 0014 0z" />
-                        </svg>
-                    </button>
-                </form>
-                <a href="index.html">Novidades</a>
-                <a href="masculino.html">Masculino</a>
-                <a href="feminino.html">Feminino</a>
-                <a href="promoçoes.html">Promoções</a>
-                <a href="contato.html" aria-current="page">Contato</a>
-            </nav>
-            <a href="carrinho.html" class="cart-icon" aria-label="Carrinho de Compras">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round">
-                    <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
-                    <path d="M3 6h18" />
-                    <path d="M16 10a4 4 0 01-8 0" />
-                </svg>
-            </a>
-        </div>
+        <!-- Header content will be populated by JS -->
     </header>
-    <section class="banner">
-        <div class="container">
-            <div class="banner-content">
-                <span class="kicker">Contato</span>
-                <h2>Fale Conosco</h2>
-                <p>Suporte, trocas e dúvidas. Estamos aqui para ajudar.</p>
-                <a href="#" id="open-contact-modal-banner" class="cta">Enviar mensagem</a>
-            </div>
+
+    <section class="banner"
+        style="background-image: url('imagens/banner_contato.jpg'); background-size: cover; background-position: center; padding: 100px 0; position: relative;">
+        <!-- Overlay -->
+        <div style="position: absolute; inset: 0; background: rgba(0,0,0,0.5);"></div>
+
+        <div class="container" style="position: relative; z-index: 1; text-align: center; color: white;">
+            <span class="kicker" style="color: #e5e7eb;">Suporte</span>
+            <h1 style="font-size: 48px; margin-bottom: 15px;">Fale Conosco</h1>
+            <p style="font-size: 18px; opacity: 0.9; max-width: 600px; margin: 0 auto;">Dúvidas, sugestões ou apenas um
+                olá. Estamos prontos para te ouvir.</p>
         </div>
     </section>
-    <main class="container">
-        <h1>Atendimento ao Cliente</h1>
-        <p>Entre em contato para suporte e informações.</p>
-        <div style="margin-top: 30px;">
-            <h3 style="font-size: 20px; margin-bottom: 10px;">Canais de Suporte:</h3>
-            <p>Utilize o formulário de contato (clicando em "Enviar mensagem" no banner acima ou no rodapé) para
-                questões de:
-            </p>
-            <ul style="list-style: disc; padding-left: 20px;">
-                <li>Dúvidas sobre produtos e tamanhos.</li>
-                <li>Problemas com pedidos já realizados.</li>
-                <li>Solicitação de troca ou devolução (consulte a página de <a href="devolucao.html"
-                        style="color: #111827; text-decoration: underline;">Trocas/Devoluções</a> primeiro).</li>
-            </ul>
 
-            <h3 style="font-size: 20px; margin-top: 30px; margin-bottom: 10px;">Informações Úteis:</h3>
-            <p><strong>E-mail de Suporte:</strong> <a href="mailto:contato@poissonmodas.com"
-                    style="color: #111827;">contato@poissonmodas.com</a></p>
-            <p><strong>Horário de Atendimento:</strong> Segunda a Sexta, das 9h às 18h (exceto feriados).</p>
+    <main class="container">
+        <div class="contact-grid">
+            <!-- Coluna da Esquerda: Infos e FAQ -->
+            <div class="contact-info">
+                <h2 style="font-size: 28px; margin-bottom: 20px;">Como podemos ajudar?</h2>
+                <p style="color: #6b7280; margin-bottom: 30px;">Se você tiver alguma dúvida sobre seu pedido, produtos
+                    ou qualquer outra coisa, entre em contato conosco. Nossa equipe responderá o mais rápido possível.
+                </p>
+
+                <div style="margin-bottom: 30px;">
+                    <h3 style="font-size: 18px; margin-bottom: 15px;">Canais diretos</h3>
+                    <p style="margin-bottom: 10px;">
+                        <strong style="display: block; color: #111827;">E-mail</strong>
+                        <a href="mailto:contato@poissonmodas.com" style="color: #2563eb;">contato@poissonmodas.com</a>
+                    </p>
+                    <p>
+                        <strong style="display: block; color: #111827;">Horário de Atendimento</strong>
+                        Segunda a Sexta, das 9h às 18h
+                    </p>
+                </div>
+
+                <div class="faq-section">
+                    <h3 style="font-size: 24px; margin-bottom: 20px;">Perguntas Frequentes</h3>
+
+                    <div class="faq-item">
+                        <div class="faq-question">Qual o prazo de entrega? <span>+</span></div>
+                        <div class="faq-answer">O prazo de entrega varia de acordo com o seu CEP. Você pode calcular o
+                            prazo exato na página do produto ou no carrinho.</div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">Como faço uma troca? <span>+</span></div>
+                        <div class="faq-answer">Você tem até 7 dias após o recebimento para solicitar a troca. Acesse a
+                            página de "Trocas e Devoluções" no rodapé para mais detalhes.</div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">Quais as formas de pagamento? <span>+</span></div>
+                        <div class="faq-answer">Aceitamos Cartão de Crédito (até 12x), Boleto Bancário e PIX com
+                            aprovação imediata.</div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">É seguro comprar no site? <span>+</span></div>
+                        <div class="faq-answer">Sim! Utilizamos criptografia SSL para proteger seus dados e
+                            processadores de pagamento certificados.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Coluna da Direita: Formulário -->
+            <div class="contact-form-container">
+                <h2>Envie sua mensagem</h2>
+                <form id="main-contact-form">
+                    <div class="form-group">
+                        <label for="page-nome">Seu Nome</label>
+                        <input type="text" id="page-nome" required placeholder="Digite seu nome completo">
+                    </div>
+                    <div class="form-group">
+                        <label for="page-email">Seu Email</label>
+                        <input type="email" id="page-email" required placeholder="exemplo@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="page-assunto">Assunto</label>
+                        <select id="page-assunto" required
+                            style="width: 100%; padding: 12px; border: 1px solid #d1d5db; border-radius: 6px; font-family: inherit;">
+                            <option value="">Selecione um assunto</option>
+                            <option value="pedido">Dúvida sobre Pedido</option>
+                            <option value="produto">Informação de Produto</option>
+                            <option value="trocas">Trocas e Devoluções</option>
+                            <option value="outros">Outros</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="page-mensagem">Mensagem</label>
+                        <textarea id="page-mensagem" rows="5" required placeholder="Como podemos te ajudar?"></textarea>
+                    </div>
+                    <button type="submit" class="cta" style="width: 100%;">Enviar Mensagem</button>
+                    <p id="form-feedback" style="margin-top: 15px; color: #059669; display: none; text-align: center;">
+                        Mensagem enviada com sucesso! Entraremos em contato em breve.</p>
+                </form>
+            </div>
         </div>
     </main>
+
+    <!-- Modal still exists for Header/Footer links, but page uses embedded form -->
     <div id="contact-modal" class="modal" aria-modal="true" role="dialog" aria-labelledby="modal-title"
         style="display: none;">
         <div class="modal-content">
             <button class="modal-close" id="close-contact-modal"
                 aria-label="Fechar formulário de contato">&times;</button>
             <h2 id="modal-title">Fale Conosco</h2>
-            <p class="modal-intro">Suporte, trocas e dúvidas. Estamos aqui para ajudar. Preencha o formulário abaixo ou
-                envie um email diretamente.</p>
-
+            <p class="modal-intro">Envie sua dúvida ou sugestão.</p>
             <form style="margin-top: 20px;">
                 <div style="margin-bottom: 15px;">
-                    <label for="nome" style="display: block; margin-bottom: 5px; font-weight: 500;">Seu Nome:</label>
-                    <input type="text" id="nome"
+                    <label for="modal-nome" style="display: block; margin-bottom: 5px; font-weight: 500;">Nome:</label>
+                    <input type="text" id="modal-nome"
                         style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
                 </div>
                 <div style="margin-bottom: 15px;">
-                    <label for="email-contato" style="display: block; margin-bottom: 5px; font-weight: 500;">Seu
-                        Email:</label>
-                    <input type="email" id="email-contato"
+                    <label for="modal-email"
+                        style="display: block; margin-bottom: 5px; font-weight: 500;">Email:</label>
+                    <input type="email" id="modal-email"
                         style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
                 </div>
                 <div style="margin-bottom: 20px;">
-                    <label for="mensagem"
+                    <label for="modal-msg"
                         style="display: block; margin-bottom: 5px; font-weight: 500;">Mensagem:</label>
-                    <textarea id="mensagem" rows="5"
+                    <textarea id="modal-msg" rows="4"
                         style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;"></textarea>
                 </div>
-                <button type="submit" class="cta" style="width: 100%;">Enviar Mensagem</button>
+                <button type="submit" class="cta" style="width: 100%;">Enviar</button>
             </form>
         </div>
     </div>
@@ -182,18 +300,6 @@
                                 d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6zm6.5-3a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4z" />
                         </svg>
                     </a>
-                    <a href="#" aria-label="YouTube">
-                        <svg fill="currentColor" viewBox="0 0 24 24" width="24" height="24">
-                            <path
-                                d="M18.88 2c.57 0 1.05.21 1.44.6.38.38.6.86.6 1.44v15.92c0 .57-.21 1.05-.6 1.44a2 2 0 0 1-1.44.6H5.12c-.57 0-1.05-.21-1.44-.6a2 2 0 0 1-.6-1.44V4.04c0-.57.21-1.05.6-1.44C4.07 2.21 4.55 2 5.12 2zm-2.02 9.42l-5.38 3.1a.5.5 0 0 1-.76-.42V7.9a.5.5 0 0 1 .76-.42l5.38 3.1c.14.08.14.26 0 .34z" />
-                        </svg>
-                    </a>
-                    <a href="#" aria-label="TikTok">
-                        <svg fill="currentColor" viewBox="0 0 24 24" width="24" height="24">
-                            <path
-                                d="M21 7.91v8.18c0 1.25-.97 2.27-2.18 2.27A2.18 2.18 0 0 1 16.64 16.3V6.9a.46.46 0 0 0-.46-.46h-3.48a.46.46 0 0 0-.46.46v9.43a2.18 2.18 0 0 1-2.18 2.27 2.18 2.18 0 0 1-2.18-2.27V9.75a.46.46 0 0 0-.46-.46H4.46a.46.46 0 0 0-.46.46v6.54a4.18 4.18 0 0 0 4.18 4.18 4.18 4.18 0 0 0 4.18-4.18V8.37a4.18 4.18 0 0 0 4.18-4.18 4.18 4.18 0 0 0 4.18 4.18" />
-                        </svg>
-                    </a>
                 </div>
             </div>
         </div>
@@ -201,13 +307,66 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // O ID 'open-contact-modal' vem do rodapé copiado, o 'open-contact-modal-banner' é o novo botão no banner.
-            // IDs atualizados
-            const openModalBtns = document.querySelectorAll('#open-contact-modal-banner, #open-contact-modal-footer, #open-contact-modal');
+            // 1. Script Header Copy (Simulated for this page)
+            const copyContent = (selector, target) => {
+                try {
+                    const content = window.opener?.document.querySelector(selector)?.innerHTML;
+                    // If opened directly, this might fail or be empty, handled gracefully
+                    if (content && document.querySelector(target)) {
+                        document.querySelector(target).innerHTML = content;
+                    } else if (!window.opener && document.querySelector(target)) {
+                        // Fallback if opened directly (just a placeholder behavior for now, usually we'd fetch or include)
+                        // For now, index.html header isn't here, relying on base styles or static if opener fails
+                        // But for completeness, we keep the structure.
+                    }
+                } catch (e) { }
+            };
+            // Try to copy header if opened from index
+            copyContent('header.site-header', 'header.site-header');
+
+
+            // 2. Logic for Main Contact Form
+            const mainForm = document.getElementById('main-contact-form');
+            if (mainForm) {
+                mainForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const btn = mainForm.querySelector('button');
+                    const originalText = btn.textContent;
+
+                    btn.textContent = 'Enviando...';
+                    btn.disabled = true;
+
+                    setTimeout(() => {
+                        document.getElementById('form-feedback').style.display = 'block';
+                        btn.textContent = originalText;
+                        btn.disabled = false;
+                        mainForm.reset();
+
+                        setTimeout(() => {
+                            document.getElementById('form-feedback').style.display = 'none';
+                        }, 5000);
+                    }, 1500);
+                });
+            }
+
+            // 3. Logic for FAQ Accordion
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                item.querySelector('.faq-question').addEventListener('click', () => {
+                    // Close others
+                    faqItems.forEach(other => {
+                        if (other !== item) other.classList.remove('active');
+                    });
+                    // Toggle current
+                    item.classList.toggle('active');
+                });
+            });
+
+            // 4. Modal Logic (Legacy/Footer link support)
+            const openModalBtns = document.querySelectorAll('#open-contact-modal-footer, #open-contact-modal');
             const closeModalBtn = document.getElementById('close-contact-modal');
             const modal = document.getElementById('contact-modal');
 
-            // Abre o modal
             openModalBtns.forEach(btn => {
                 btn.addEventListener('click', function (e) {
                     e.preventDefault();
@@ -216,7 +375,6 @@
                 });
             });
 
-            // Fecha o modal
             if (closeModalBtn) {
                 closeModalBtn.addEventListener('click', function () {
                     modal.style.display = 'none';
@@ -224,7 +382,6 @@
                 });
             }
 
-            // Fecha o modal ao clicar fora dele
             modal.addEventListener('click', function (e) {
                 if (e.target === modal) {
                     modal.style.display = 'none';
@@ -232,7 +389,6 @@
                 }
             });
 
-            // Fecha o modal ao pressionar ESC
             document.addEventListener('keydown', function (e) {
                 if (e.key === 'Escape' && modal.style.display === 'flex') {
                     modal.style.display = 'none';
