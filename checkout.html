@@ -134,6 +134,17 @@
             margin: 0 auto;
             max-width: 200px;
         }
+
+        .method-total {
+            margin-top: 15px;
+            font-weight: 700;
+            font-size: 1.1em;
+            color: #111827;
+            text-align: center;
+            background: #e5e7eb;
+            padding: 10px;
+            border-radius: 4px;
+        }
     </style>
 </head>
 
@@ -249,6 +260,7 @@
                                 <!-- Preenchido via JS -->
                             </select>
                         </div>
+                        <p class="method-total">Valor Total: <span id="credit-total-display">--</span></p>
                     </div>
 
                     <!-- Conteúdo Boleto -->
@@ -261,6 +273,7 @@
                                 style="font-family: monospace; letter-spacing: 2px; margin-top: 20px; font-weight: bold; font-size: 1.2em; word-break: break-all;">
                                 34191.79001 01043.510047 91020.150008 5 89820000260000</p>
                         </div>
+                        <p class="method-total">Valor Total: <span id="boleto-total-display">--</span></p>
                     </div>
 
                     <!-- Conteúdo PIX -->
@@ -273,6 +286,7 @@
                         </div>
                         <p style="font-size: 12px; margin-top: 10px; color: #6b7280;" id="pix-instructions"
                             class="hidden">Aprovação imediata</p>
+                        <p class="method-total">Valor Total: <span id="pix-total-display">--</span></p>
                     </div>
                     <p style="font-size: 14px; color: #6b7280;">Ao clicar em "Pagar agora", você concorda com os termos
                         e condições.</p>
@@ -505,21 +519,38 @@
 
             function updateTotalFromInstallment() {
                 const parcels = parseInt(installmentSelect.value);
+                let currentTotal = total;
+
                 if (parcels >= 3) {
-                    const totalWithInterest = total * 1.10;
-                    totalEl.textContent = totalWithInterest.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-                } else {
-                    totalEl.textContent = totalFormatted;
+                    currentTotal = total * 1.10;
                 }
+
+                const formatted = currentTotal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+                totalEl.textContent = formatted;
+
+                // Update specific credit display
+                document.getElementById('credit-total-display').textContent = formatted;
+            }
+
+            // Helper to update all static totals
+            function updateStaticTotals() {
+                const formatted = totalFormatted;
+                document.getElementById('boleto-total-display').textContent = formatted;
+                document.getElementById('pix-total-display').textContent = formatted;
+
+                // Init credit display (starts as 1x)
+                document.getElementById('credit-total-display').textContent = formatted;
             }
 
             generateInstallments();
             installmentSelect.addEventListener('change', updateTotalFromInstallment);
 
             // Initialize Display
+            updateStaticTotals();
             updatePaymentDisplay();
         });
     </script>
 </body>
 
 </html>
+```
