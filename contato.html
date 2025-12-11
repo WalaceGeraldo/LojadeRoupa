@@ -108,7 +108,59 @@
 
 <body>
     <header class="site-header">
-        <!-- Header content will be populated by JS -->
+        <div class="container">
+            <a href="index.html" class="brand logo-text" aria-label="Poisson Modas - Página Inicial">₱Øł₴₴Ø₦</a>
+            <input type="checkbox" id="menu-toggle" class="menu-toggle">
+            <label for="menu-toggle" class="menu-button">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+
+            <div class="search-dropdown-container">
+                <form class="search-bar header-search" role="search" aria-label="Busca de produtos">
+                    <input type="search" id="main-search-input" placeholder="Buscar por roupa..."
+                        aria-label="Buscar por roupa">
+                    <button type="submit" aria-label="Pesquisar">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M15.5 15.5l5.2 5.2" />
+                            <path d="M17 10a7 7 0 10-14 0 7 7 0 0014 0z" />
+                        </svg>
+                    </button>
+                </form>
+                <div id="search-results-dropdown" class="search-dropdown" style="display: none;">
+                </div>
+            </div>
+
+            <nav class="nav" aria-label="Menu principal">
+                <form class="search-bar nav-search" role="search">
+                    <input type="search" id="nav-search-input" placeholder="Buscar por roupa..."
+                        aria-label="Buscar por roupa">
+                    <button type="submit" aria-label="Pesquisar">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M15.5 15.5l5.2 5.2" />
+                            <path d="M17 10a7 7 0 10-14 0 7 7 0 0014 0z" />
+                        </svg>
+                    </button>
+                </form>
+
+                <a href="index.html">Novidades</a>
+                <a href="masculino.html">Masculino</a>
+                <a href="feminino.html">Feminino</a>
+                <a href="promoçoes.html">Promoções</a>
+                <a href="contato.html" aria-current="page">Contato</a>
+            </nav>
+            <a href="carrinho.html" class="cart-icon" aria-label="Carrinho de Compras">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
+                    <path d="M3 6h18" />
+                    <path d="M16 10a4 4 0 01-8 0" />
+                </svg>
+            </a>
+        </div>
     </header>
 
     <section class="banner"
@@ -307,22 +359,10 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // 1. Script Header Copy (Simulated for this page)
-            const copyContent = (selector, target) => {
-                try {
-                    const content = window.opener?.document.querySelector(selector)?.innerHTML;
-                    // If opened directly, this might fail or be empty, handled gracefully
-                    if (content && document.querySelector(target)) {
-                        document.querySelector(target).innerHTML = content;
-                    } else if (!window.opener && document.querySelector(target)) {
-                        // Fallback if opened directly (just a placeholder behavior for now, usually we'd fetch or include)
-                        // For now, index.html header isn't here, relying on base styles or static if opener fails
-                        // But for completeness, we keep the structure.
-                    }
-                } catch (e) { }
-            };
-            // Try to copy header if opened from index
-            copyContent('header.site-header', 'header.site-header');
+            // 1. Script Header Copy (REMOVED - Header is now hardcoded)
+            // The footer copy might still be useful if opened from index, but since we hardcoded header, 
+            // relying on standalone header is better. Leaving footer copy for now if needed, or remove entire block if footer is also hardcoded.
+            // Actually, we hardcoded footer in previous step too. So this block is mostly clean up.
 
 
             // 2. Logic for Main Contact Form
