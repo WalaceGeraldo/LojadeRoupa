@@ -254,18 +254,22 @@
                     <!-- Conteúdo Boleto -->
                     <div id="boleto-content" class="payment-content hidden" style="text-align: center;">
                         <h3>Boleto Bancário</h3>
-                        <p>Pagamento à vista. O boleto será gerado após a confirmação.</p>
-                        <img src="imagens/checkout/boleto_barcode.png" alt="Código de Barras" class="barcode-img">
-                        <p style="font-family: monospace; letter-spacing: 2px; margin-top: 10px;">34191.79001
-                            01043.510047 91020.150008 5 89820000260000</p>
+                        <p>Pagamento à vista. O boleto será gerado após clicar no botão abaixo.</p>
+                        <div id="boleto-code-container" class="hidden">
+                            <img src="imagens/checkout/boleto_barcode.png" alt="Código de Barras" class="barcode-img">
+                            <p style="font-family: monospace; letter-spacing: 2px; margin-top: 10px;">34191.79001
+                                01043.510047 91020.150008 5 89820000260000</p>
+                        </div>
                     </div>
 
                     <!-- Conteúdo PIX -->
                     <div id="pix-content" class="payment-content hidden" style="text-align: center;">
                         <h3>Pagamento via PIX</h3>
-                        <p>Escaneie o QR Code abaixo com o app do seu banco:</p>
-                        <img src="imagens/checkout/pix_qr.png" alt="QR Code PIX" class="qr-code-img">
-                        <p style="font-size: 12px; margin-top: 10px; color: #6b7280;">Aprovação imediata</p>
+                        <p>Gerar QR Code para pagamento instantâneo:</p>
+                        <div id="pix-code-container" class="hidden">
+                            <img src="imagens/checkout/pix_qr.png" alt="QR Code PIX" class="qr-code-img">
+                            <p style="font-size: 12px; margin-top: 10px; color: #6b7280;">Aprovação imediata</p>
+                        </div>
                     </div>
                     <p style="font-size: 14px; color: #6b7280;">Ao clicar em "Pagar agora", você concorda com os termos
                         e condições.</p>
@@ -338,19 +342,62 @@
             subtotalEl.textContent = totalFormatted;
             totalEl.textContent = totalFormatted;
 
-            // Form Submit original
+            // Form Submit Logic
+            let paymentStep = 'init'; // init or finalized
+
             document.getElementById('checkout-form').addEventListener('submit', (e) => {
                 e.preventDefault();
                 const btn = e.target.querySelector('button[type="submit"]');
+
+                // Pega o método selecionado
+                let selected = 'credit';
+                document.getElementsByName('pagamento').forEach(r => { if (r.checked) selected = r.value; });
+
+                if (selected === 'credit') {
+                    // Cartão é direto
+                    finishPurchase(btn);
+                } else if (selected === 'boleto') {
+                    if (paymentStep === 'init') {
+                        // Gerar Boleto
+                        btn.textContent = 'Gerando Boleto...';
+                        btn.disabled = true;
+                        setTimeout(() => {
+                            document.getElementById('boleto-code-container').classList.remove('hidden');
+                            btn.textContent = 'Finalizar Compra';
+                            btn.disabled = false;
+                            paymentStep = 'finalized';
+                        }, 1500);
+                    } else {
+                        // Finalizar
+                        finishPurchase(btn);
+                    }
+                } else if (selected === 'pix') {
+                    if (paymentStep === 'init') {
+                        // Gerar PIX
+                        btn.textContent = 'Gerando QR Code...';
+                        btn.disabled = true;
+                        setTimeout(() => {
+                            document.getElementById('pix-code-container').classList.remove('hidden');
+                            btn.textContent = 'Finalizar Compra';
+                            btn.disabled = false;
+                            paymentStep = 'finalized';
+                        }, 1500);
+                    } else {
+                        // Finalizar
+                        finishPurchase(btn);
+                    }
+                }
+            });
+
+            function finishPurchase(btn) {
                 btn.textContent = 'Processando...';
                 btn.disabled = true;
-
                 setTimeout(() => {
                     alert('Compra realizada com sucesso! Obrigado pela preferência.');
                     Cart.clear();
                     window.location.href = 'index.html';
                 }, 2000);
-            });
+            }
 
             // Lógica de Pagamento
             const paymentRadios = document.getElementsByName('pagamento');
@@ -359,10 +406,16 @@
             const pixContent = document.getElementById('pix-content');
             const installmentSelect = document.getElementById('installments-select');
             const labels = document.querySelectorAll('.payment-option-label');
+            const formBtn = document.querySelector('#checkout-form button[type="submit"]');
 
             function updatePaymentDisplay() {
                 let selected = 'credit';
                 paymentRadios.forEach(r => { if (r.checked) selected = r.value; });
+
+                // Reset step se mudar de opção
+                paymentStep = 'init';
+                document.getElementById('boleto-code-container').classList.add('hidden');
+                document.getElementById('pix-code-container').classList.add('hidden');
 
                 creditContent.classList.add('hidden');
                 boletoContent.classList.add('hidden');
@@ -377,40 +430,34 @@
                 if (selected === 'boleto') boletoContent.classList.remove('hidden');
                 if (selected === 'pix') pixContent.classList.remove('hidden');
 
-                // Se não for crédito, reseta o total para o valor à vista original (sem juros)
-                const submitBtn = document.querySelector('#checkout-form button[type="submit"]');
-
+                // Logica do Preço
                 if (selected !== 'credit') {
                     totalEl.textContent = totalFormatted;
                 } else {
-                    // Recalcula o total baseado na parcela selecionada (caso já tenha selecionado)
                     updateTotalFromInstallment();
                 }
 
+                // Logica do Botão (Texto inicial)
                 if (selected === 'boleto') {
-                    submitBtn.textContent = 'Gerar Código de Barras';
+                    formBtn.textContent = 'Gerar Código de Barras';
                 } else if (selected === 'pix') {
-                    submitBtn.textContent = 'Gerar QR Code';
+                    formBtn.textContent = 'Gerar QR Code';
                 } else {
-                    submitBtn.textContent = 'Pagar Agora';
+                    formBtn.textContent = 'Pagar Agora';
                 }
             }
 
             paymentRadios.forEach(radio => radio.addEventListener('change', updatePaymentDisplay));
-            updatePaymentDisplay(); // Init
 
-            // Preencher Parcelamento
-            // Lógica: Se >= 3 parcelas, +10% de juros no Total
+            // Generate Installments Logic
             const generateInstallments = () => {
                 installmentSelect.innerHTML = '';
 
-                // Opção 1x (À vista)
                 const opt1 = document.createElement('option');
                 opt1.value = 1;
                 opt1.textContent = `1x de ${total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })} sem juros`;
                 installmentSelect.appendChild(opt1);
 
-                // Opção 2x (À vista / 2)
                 if (total > 0) {
                     const val2x = total / 2;
                     const opt2 = document.createElement('option');
@@ -419,8 +466,6 @@
                     installmentSelect.appendChild(opt2);
                 }
 
-                // Opções 3x até 12x (Com juros de 10% sobre o total)
-                // Obs: O juros é fixo de 10% se parcelar em 3x ou mais, independente do número de parcelas, conforme solicitado "a partir de 3 parcela crie 10% de juros"
                 const totalWithInterest = total * 1.10;
 
                 for (let i = 3; i <= 12; i++) {
@@ -444,6 +489,9 @@
 
             generateInstallments();
             installmentSelect.addEventListener('change', updateTotalFromInstallment);
+
+            // Initialize Display
+            updatePaymentDisplay();
         });
     </script>
 </body>
