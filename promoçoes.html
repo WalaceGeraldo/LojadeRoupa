@@ -1,218 +1,309 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Promoções - Loja de Roupa</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
-<style>
-    /* Estilos para a mensagem de não encontrado */
-    .not-found-message {
-        grid-column: 1 / -1; 
-        text-align: center;
-        padding: 40px;
-        color: #ef4444; 
-        font-weight: 600;
-        font-size: 18px;
-        background: #fef2f2; 
-        border: 1px dashed #fca5a5;
-        border-radius: 8px;
-        margin-top: 20px;
-    }
-    /* Estilo para o botão "Ver Mais" */
-    #load-more-container {
-        grid-column: 1 / -1;
-        text-align: center;
-        padding-top: 20px;
-        order: 999; 
-    }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Promoções - Loja de Roupa</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Estilos para a mensagem de não encontrado */
+        .not-found-message {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 40px;
+            color: #ef4444;
+            font-weight: 600;
+            font-size: 18px;
+            background: #fef2f2;
+            border: 1px dashed #fca5a5;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        /* Estilo para o botão "Ver Mais" */
+        #load-more-container {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding-top: 20px;
+            order: 999;
+        }
+    </style>
 </head>
+
 <body>
-<header class="site-header">
-<div class="container">
-<a href="index.html" class="brand logo-text">₱Øł₴₴Ø₦</a>
-<input type="checkbox" id="menu-toggle" class="menu-toggle">
-<label for="menu-toggle" class="menu-button">
-<span></span>
-<span></span>
-<span></span>
-</label>
-<form class="search-bar header-search" role="search" aria-label="Busca de produtos">
-    <input type="search" id="main-search-input" placeholder="Buscar por roupa..." aria-label="Buscar por roupa">
-    <button type="submit" aria-label="Pesquisar">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M15.5 15.5l5.2 5.2"/>
-            <path d="M17 10a7 7 0 10-14 0 7 7 0 0014 0z"/>
-        </svg>
-    </button>
-</form>
+    <header class="site-header">
+        <div class="container">
+            <a href="index.html" class="brand logo-text">₱Øł₴₴Ø₦</a>
+            <input type="checkbox" id="menu-toggle" class="menu-toggle">
+            <label for="menu-toggle" class="menu-button">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+            <form class="search-bar header-search" role="search" aria-label="Busca de produtos">
+                <input type="search" id="main-search-input" placeholder="Buscar por roupa..."
+                    aria-label="Buscar por roupa">
+                <button type="submit" aria-label="Pesquisar">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M15.5 15.5l5.2 5.2" />
+                        <path d="M17 10a7 7 0 10-14 0 7 7 0 0014 0z" />
+                    </svg>
+                </button>
+            </form>
 
-<nav class="nav" aria-label="Menu principal">
-<form class="search-bar nav-search" role="search">
-<input type="search" id="nav-search-input" placeholder="Buscar por roupa..." aria-label="Buscar por roupa">
-<button type="submit" aria-label="Pesquisar">
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M15.5 15.5l5.2 5.2"/>
-    <path d="M17 10a7 7 0 10-14 0 7 7 0 0014 0z"/>
-</svg>
-</button>
-</form>
-<a href="index.html">Novidades</a>
-<a href="masculino.html">Masculino</a>
-<a href="feminino.html">Feminino</a>
-<a href="promoçoes.html" aria-current="page">Promoções</a>
-<a href="contato.html">Contato</a>
-</nav>
-</div>
-</header>
-<section class="banner">
-<div class="container">
-<div class="banner-content">
-<span class="kicker">Promoções</span>
-<h2>Ofertas</h2>
-<p>Descontos especiais em peças selecionadas.</p>
-<a href="index.html" class="cta">Comprar agora</a>
-</div>
-</div>
-</section>
-<main class="container">
-<h1>Promoções</h1>
-<p>Confira nossas ofertas em destaque.</p>
-
-<div class="main-content-filter">
-    <div class="filter-dropdowns">
-        <div class="dropdown-filter">
-            <button class="filter-button" aria-expanded="false" aria-controls="menu-geral">Filtro ▼</button>
-            <ul id="menu-geral" class="dropdown-menu" role="list">
-                <li role="listitem"><a href="#">Em Destaque</a></li>
-                <li role="listitem"><a href="#">Mais Vendidos</a></li>
-                <li role="listitem"><a href="#">Preço: Crescente</a></li>
-                <li role="listitem"><a href="#">Preço: Decrescente</a></li>
-            </ul>
+            <nav class="nav" aria-label="Menu principal">
+                <form class="search-bar nav-search" role="search">
+                    <input type="search" id="nav-search-input" placeholder="Buscar por roupa..."
+                        aria-label="Buscar por roupa">
+                    <button type="submit" aria-label="Pesquisar">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M15.5 15.5l5.2 5.2" />
+                            <path d="M17 10a7 7 0 10-14 0 7 7 0 0014 0z" />
+                        </svg>
+                    </button>
+                </form>
+                <a href="index.html">Novidades</a>
+                <a href="masculino.html">Masculino</a>
+                <a href="feminino.html">Feminino</a>
+                <a href="promoçoes.html" aria-current="page">Promoções</a>
+                <a href="contato.html">Contato</a>
+            </nav>
         </div>
-        
-        <div class="dropdown-filter">
-            <button class="filter-button" aria-expanded="false" aria-controls="menu-produtos">Produtos ▼</button>
-            <ul id="menu-produtos" class="dropdown-menu" role="list">
-                <li role="listitem"><a href="#" class="type-filter" data-filter-type="all">Todos os Produtos</a></li>
-                <li role="listitem"><a href="#" class="type-filter" data-filter-type="casaco">Casaco</a></li>
-                <li role="listitem"><a href="#" class="type-filter" data-filter-type="camisa">Camisa</a></li>
-                <li role="listitem"><a href="#" class="type-filter" data-filter-type="short">Short / Bermuda</a></li>
-                <li role="listitem"><a href="#" class="type-filter" data-filter-type="moletom">Moletom</a></li>
-            </ul>
-        </div>
-        
-        <div class="dropdown-filter">
-            <button class="filter-button" aria-expanded="false" aria-controls="menu-categorias">Gênero ▼</button>
-            <ul id="menu-categorias" class="dropdown-menu filter-checkbox-list" role="list">
-                <li role="listitem"><label><input type="checkbox" name="gender" value="masculino" class="gender-filter"> Masculino</label></li>
-                <li role="listitem"><label><input type="checkbox" name="gender" value="feminino" class="gender-filter"> Feminino</label></li>
-            </ul>
-        </div>
-    </div>
-</div>
-
-<section class="product-grid">
-    <div class="container">
-        <div class="product-container" id="product-container">
-            
-            <div id="not-found" class="not-found-message" style="display: none;">
-                Ops Não encontramos o produto especifico :(
-            </div>
-
-            <div id="load-more-container">
-                <button id="load-more-button" class="cta">Ver Mais</button>
+    </header>
+    <section class="banner">
+        <div class="container">
+            <div class="banner-content">
+                <span class="kicker">Promoções</span>
+                <h2>Ofertas</h2>
+                <p>Descontos especiais em peças selecionadas.</p>
+                <a href="index.html" class="cta">Comprar agora</a>
             </div>
         </div>
-    </div>
-</section>
-</main>
-<script>
-    // ----------------------------------------------------
-    // 1. BANCO DE DADOS DE PRODUTOS (DEVE SER O MESMO DO index.html)
-    // ----------------------------------------------------
-    const ALL_PRODUCTS_DATA = [
-        // Masculino
-        { id: 'MAS001', name: 'Casaco de Lã Clássico', category: 'masculino', type: 'casaco', price: 499.90, imagePath: 'imagem/CasacoMasculino/casaco1.jpg', description: 'Casaco de lã premium para o inverno.', material: '80% Lã, 20% Poliéster.', folder: 'CasacoMasculino', imageCount: 6, colors: ['#333', '#fff'], onSale: true },
-        { id: 'MAS002', name: 'Casaco Xadrez Elegante', category: 'masculino', type: 'casaco', price: 549.90, imagePath: 'imagem/CasacoMasculino/casaco2.jpg', description: 'Casaco moderno com estampa xadrez.', material: '50% Lã, 50% Algodão.', folder: 'CasacoMasculino', imageCount: 6, colors: ['#000', '#ccc'], onSale: false },
-        { id: 'MAS003', name: 'Moletom Canguru Preto', category: 'masculino', type: 'casaco', price: 169.90, imagePath: 'imagem/CasacoMasculino/casaco3.jpg', description: 'Moletom casual e quente com bolso canguru.', material: '100% Algodão.', folder: 'CasacoMasculino', imageCount: 6, colors: ['#000', '#fff'], onSale: true },
-        { id: 'MAS004', name: 'Jaqueta Esportiva Leve', category: 'masculino', type: 'casaco', price: 175.90, imagePath: 'imagem/CasacoMasculino/casaco4.jpg', description: 'Jaqueta esportiva ideal para exercícios.', material: '100% Poliéster.', folder: 'CasacoMasculino', imageCount: 6, colors: ['#000', '#333'], onSale: true },
-        { id: 'MAS005', name: 'Casaco Nylon Azul', category: 'masculino', type: 'casaco', price: 185.90, imagePath: 'imagem/CasacoMasculino/casaco5.jpg', description: 'Casaco de nylon leve e resistente à água.', material: '100% Nylon.', folder: 'CasacoMasculino', imageCount: 6, colors: ['#000080', '#fff'], onSale: false },
-        { id: 'MAS006', name: 'Jaqueta Corta-Vento', category: 'masculino', type: 'casaco', price: 159.90, imagePath: 'imagem/CasacoMasculino/casaco6.jpg', description: 'Corta-vento básico para dias de vento.', material: '100% Poliéster.', folder: 'CasacoMasculino', imageCount: 6, colors: ['#000', '#666'], onSale: true },
-        
-        { id: 'MAS007', name: 'Camisa Box Gueixa', category: 'masculino', type: 'camisa', price: 89.90, imagePath: 'imagem/CamisaMasculina/camisa1.jpg', description: 'Camisa box com estampa artística.', material: '100% Algodão.', folder: 'CamisaMasculina', imageCount: 5, colors: ['#000', '#fff'], onSale: true },
-        { id: 'MAS008', name: 'Camisa Box Renascer', category: 'masculino', type: 'camisa', price: 89.90, imagePath: 'imagem/CamisaMasculina/camisa2.jpg', description: 'Camisa box com estampa Renascer.', material: '100% Algodão.', folder: 'CamisaMasculina', imageCount: 5, colors: ['#000', '#fff'], onSale: false },
-        { id: 'MAS009', name: 'Camisa Geométrica', category: 'masculino', type: 'camisa', price: 94.90, imagePath: 'imagem/CamisaMasculina/camisa3.jpg', description: 'Camisa com estampa geométrica moderna.', material: '100% Algodão.', folder: 'CamisaMasculina', imageCount: 5, colors: ['#000', '#fff'], onSale: true },
-        { id: 'MAS010', name: 'Camisa Retrô 90s', category: 'masculino', type: 'camisa', price: 84.90, imagePath: 'imagem/CamisaMasculina/camisa4.jpg', description: 'Camisa com pegada vintage dos anos 90.', material: '100% Algodão.', folder: 'CamisaMasculina', imageCount: 5, colors: ['#000', '#fff'], onSale: false },
-        { id: 'MAS011', name: 'Camisa Minimalista', category: 'masculino', type: 'camisa', price: 79.90, imagePath: 'imagem/CamisaMasculina/camisa5.jpg', description: 'Camisa básica de alta qualidade.', material: '100% Algodão.', folder: 'CamisaMasculina', imageCount: 5, colors: ['#000', '#fff'], onSale: true },
+    </section>
+    <main class="container">
+        <h1>Promoções</h1>
+        <p>Confira nossas ofertas em destaque.</p>
 
-        { id: 'MAS012', name: 'Short India Estampado', category: 'masculino', type: 'short', price: 79.90, imagePath: 'imagem/BermudaMasculina/Bermida1.jpg', description: 'Short masculino com estampa indiana.', material: '100% Poliéster.', folder: 'BermudaMasculina', imageCount: 5, colors: ['#666', '#800000'], onSale: false },
-        { id: 'MAS013', name: 'Short Surf Listrado', category: 'masculino', type: 'short', price: 84.90, imagePath: 'imagem/BermudaMasculina/Bermida2.jpg', description: 'Short ideal para praia e piscina.', material: '100% Poliéster.', folder: 'BermudaMasculina', imageCount: 5, colors: ['#000', '#fff'], onSale: true },
-        { id: 'MAS014', name: 'Short Chino Bege', category: 'masculino', type: 'short', price: 99.90, imagePath: 'imagem/BermudaMasculina/Bermida3.jpg', description: 'Short de sarja casual.', material: '100% Algodão.', folder: 'BermudaMasculina', imageCount: 5, colors: ['#f5f5dc', '#808000'], onSale: false },
-        { id: 'MAS015', name: 'Short Tactel Básico', category: 'masculino', type: 'short', price: 69.90, imagePath: 'imagem/BermudaMasculina/Bermida4.jpg', description: 'Short Tactel esportivo e leve.', material: '100% Poliéster.', folder: 'BermudaMasculina', imageCount: 5, colors: ['#000', '#333'], onSale: true },
-        { id: 'MAS016', name: 'Short Listras Modernas', category: 'masculino', type: 'short', price: 95.90, imagePath: 'imagem/BermudaMasculina/Bermida5.jpg', description: 'Short com listras coloridas.', material: '100% Algodão.', folder: 'BermudaMasculina', imageCount: 5, colors: ['#fff', '#333'], onSale: false },
-        
-        // Feminino
-        { id: 'FEM001', name: 'Camisa Básica Branca', category: 'feminino', type: 'camisa', price: 89.90, imagePath: 'imagem/CamisaFeminina/camisa1.jpg', description: 'Camisa feminina básica e versátil.', material: '100% Algodão.', folder: 'CamisaFeminina', imageCount: 7, colors: ['#333', '#fff'], onSale: true },
-        { id: 'FEM002', name: 'Camisa Cropped Estampada', category: 'feminino', type: 'camisa', price: 99.90, imagePath: 'imagem/CamisaFeminina/camisa2.jpg', description: 'Cropped moderno com estampa floral.', material: '100% Viscose.', folder: 'CamisaFeminina', imageCount: 7, colors: ['#f0f0f0'], onSale: false },
-        { id: 'FEM003', name: 'Camisa Gola V Manga Longa', category: 'feminino', type: 'camisa', price: 109.90, imagePath: 'imagem/CamisaFeminina/camisa3.jpg', description: 'Camisa elegante com decote em V.', material: '95% Algodão, 5% Elastano.', folder: 'CamisaFeminina', imageCount: 7, colors: ['#000', '#fff'], onSale: true },
-        { id: 'FEM004', name: 'Regata Floral', category: 'feminino', type: 'camisa', price: 79.90, imagePath: 'imagem/CamisaFeminina/camisa4.jpg', description: 'Regata leve com estampa floral vibrante.', material: '100% Viscose.', folder: 'CamisaFeminina', imageCount: 7, colors: ['#fff', '#f00'], onSale: false },
-        { id: 'FEM005', name: 'Baby Look Desenho', category: 'feminino', type: 'camisa', price: 89.90, imagePath: 'imagem/CamisaFeminina/camisa5.jpg', description: 'Baby look com estampa divertida.', material: '100% Algodão.', folder: 'CamisaFeminina', imageCount: 7, colors: ['#fff'], onSale: true },
-        { id: 'FEM006', name: 'Camisa Arte Exclusiva', category: 'feminino', type: 'camisa', price: 92.90, imagePath: 'imagem/CamisaFeminina/camisa6.jpg', description: 'Camisa com arte exclusiva da marca Poisson.', material: '100% Algodão.', folder: 'CamisaFeminina', imageCount: 7, colors: ['#000', '#fff'], onSale: false },
-        { id: 'FEM007', name: 'Camisa Slim Fit Cinza', category: 'feminino', type: 'camisa', price: 95.90, imagePath: 'imagem/CamisaFeminina/camisa7.jpg', description: 'Modelagem slim fit que se ajusta ao corpo.', material: '95% Algodão, 5% Elastano.', folder: 'CamisaFeminina', imageCount: 7, colors: ['#4b5563', '#000'], onSale: true },
+        <div class="main-content-filter">
+            <div class="filter-dropdowns">
+                <div class="dropdown-filter">
+                    <button class="filter-button" aria-expanded="false" aria-controls="menu-geral">Filtro ▼</button>
+                    <ul id="menu-geral" class="dropdown-menu" role="list">
+                        <li role="listitem"><a href="#">Em Destaque</a></li>
+                        <li role="listitem"><a href="#">Mais Vendidos</a></li>
+                        <li role="listitem"><a href="#">Preço: Crescente</a></li>
+                        <li role="listitem"><a href="#">Preço: Decrescente</a></li>
+                    </ul>
+                </div>
 
-        { id: 'FEM008', name: 'Short Jeans Frontal', category: 'feminino', type: 'short', price: 99.90, imagePath: 'imagem/BermudaFeminina/Bermida1.jpg', description: 'Short jeans de cintura alta, confortável.', material: '100% Algodão.', folder: 'BermudaFeminina', imageCount: 4, colors: ['#000', '#fff'], onSale: false },
-        { id: 'FEM009', name: 'Short Esportivo Listrado', category: 'feminino', type: 'short', price: 79.90, imagePath: 'imagem/BermudaFeminina/Bermida2.jpg', description: 'Short ideal para atividades físicas.', material: '100% Poliéster.', folder: 'BermudaFeminina', imageCount: 4, colors: ['#000', '#fff'], onSale: true },
-        { id: 'FEM010', name: 'Short Cintura Alta Sarja', category: 'feminino', type: 'short', price: 109.90, imagePath: 'imagem/BermudaFeminina/Bermida3.jpg', description: 'Short de sarja com modelagem elegante.', material: '100% Algodão.', folder: 'BermudaFeminina', imageCount: 4, colors: ['#000', '#fff'], onSale: false },
-        { id: 'FEM011', name: 'Short Moletinho Conforto', category: 'feminino', type: 'short', price: 89.90, imagePath: 'imagem/BermudaFeminina/Bermida4.jpg', description: 'Short de moletinho super macio.', material: '80% Algodão, 20% Poliéster.', folder: 'BermudaFeminina', imageCount: 4, colors: ['#6b7280'], onSale: true },
-    ];
-    
-    // Filtro principal: APENAS PRODUTOS EM PROMOÇÃO (onSale: true)
-    const PRODUCTS_FOR_PROMO = ALL_PRODUCTS_DATA.filter(p => p.onSale);
+                <div class="dropdown-filter">
+                    <button class="filter-button" aria-expanded="false" aria-controls="menu-produtos">Produtos
+                        ▼</button>
+                    <ul id="menu-produtos" class="dropdown-menu" role="list">
+                        <li role="listitem"><a href="#" class="type-filter" data-filter-type="all">Todos os Produtos</a>
+                        </li>
+                        <li role="listitem"><a href="#" class="type-filter" data-filter-type="casaco">Casaco</a></li>
+                        <li role="listitem"><a href="#" class="type-filter" data-filter-type="camisa">Camisa</a></li>
+                        <li role="listitem"><a href="#" class="type-filter" data-filter-type="short">Short / Bermuda</a>
+                        </li>
+                        <li role="listitem"><a href="#" class="type-filter" data-filter-type="moletom">Moletom</a></li>
+                    </ul>
+                </div>
 
-    // ----------------------------------------------------
-    // 2. SCRIPT DE FILTRAGEM, BUSCA E PAGINAÇÃO
-    // ----------------------------------------------------
-    document.addEventListener('DOMContentLoaded', () => {
-        const PRODUCTS_PER_PAGE = 8;
-        let productsShown = 0;
-        
-        const productContainer = document.getElementById('product-container');
-        const genderFilters = document.querySelectorAll('.gender-filter');
-        const typeFilters = document.querySelectorAll('.type-filter');
-        const notFoundMessage = document.getElementById('not-found');
-        const loadMoreButtonContainer = document.getElementById('load-more-container');
-        const loadMoreButton = document.getElementById('load-more-button');
-        const searchInput = document.getElementById('main-search-input'); 
-        const navSearchInput = document.getElementById('nav-search-input');
+                <div class="dropdown-filter">
+                    <button class="filter-button" aria-expanded="false" aria-controls="menu-categorias">Gênero
+                        ▼</button>
+                    <ul id="menu-categorias" class="dropdown-menu filter-checkbox-list" role="list">
+                        <li role="listitem"><label><input type="checkbox" name="gender" value="masculino"
+                                    class="gender-filter"> Masculino</label></li>
+                        <li role="listitem"><label><input type="checkbox" name="gender" value="feminino"
+                                    class="gender-filter"> Feminino</label></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
 
-        let activeTypeFilter = 'all'; 
-        let currentSearchTerm = ''; 
-        let filteredProductsList = []; 
-        let allProductCards = []; 
+        <section class="product-grid">
+            <div class="container">
+                <div class="product-container" id="product-container">
+
+                    <div id="not-found" class="not-found-message" style="display: none;">
+                        Ops Não encontramos o produto especifico :(
+                    </div>
+
+                    <div id="load-more-container">
+                        <button id="load-more-button" class="cta">Ver Mais</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="site-footer">
+        <div class="footer-top">
+            <div class="container">
+                <img src="logo.png" alt="Logo Poisson Modas" class="footer-logo">
+                <nav class="footer-nav">
+                    <a href="#" id="open-contact-modal">Fale conosco</a>
+                    <a href="devolucao.html">Trocas / Devoluções</a>
+                    <a href="rastrear.html">Rastrear Pedido</a>
+                    <a href="politica-troca.html">Política de Troca e Devolução</a>
+                    <a href="denuncia.html">Denuncie o Uso Ilegal de Marcas</a>
+                </nav>
+            </div>
+        </div>
+
+        <div class="footer-main">
+            <div class="container">
+                <div class="footer-about">
+                    <h4>Sobre nós</h4>
+                    <p>Poisson – Arte que nasce no papel e vive no tecido. Cada estampa é o reflexo de uma criação feita
+                        à mão, com técnicas como pintura a óleo, giz pastel, lápis e grafite. Nada aqui é digital. Você
+                        veste arte real, com alma, textura e história. Uma marca feita para quem não veste o óbvio –
+                        veste autenticidade.</p>
+                    <p>&copy; Dados do vendedor: CNPJ 77.41.007.3/0000-00-2B</p>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Categorias</h4>
+                    <ul>
+                        <li><a href="masculino.html">Masculino</a></li>
+                        <li><a href="feminino.html">Feminino</a></li>
+                        <li><a href="promoçoes.html">Promoções</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-payment">
+                    <h4>Formas de pagamento</h4>
+                    <div class="payment-icons">
+                        <img src="imagens/icon/visa.png" alt="Visa" style="height:30px;">
+                        <img src="imagens/icon/mastercard.png" alt="Mastercard" style="height:30px;">
+                        <img src="imagens/icon/american.png" alt="American Express" style="height:30px;">
+                        <img src="imagens/icon/elo.png" alt="Elo" style="height:30px;">
+                        <img src="imagens/icon/pix.png" alt="Pix" style="height:30px;">
+                    </div>
+                    <img src="imagens/icon/security-seal.png" alt="Site Seguro" class="security-seal">
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container">
+                <span class="social-text">Acompanhe-nos:</span>
+                <div class="social-icons">
+                    <a href="#" aria-label="Instagram">
+                        <svg fill="currentColor" viewBox="0 0 24 24" width="24" height="24">
+                            <path
+                                d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4c0 3.2-2.6 5.8-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8C2 4.6 4.6 2 7.8 2zm-.2 2A4.2 4.2 0 0 0 3.6 7.6v8.8a4.2 4.2 0 0 0 4.2 4.2h8.8a4.2 4.2 0 0 0 4.2-4.2V7.6a4.2 4.2 0 0 0-4.2-4.2H7.6z" />
+                            <path
+                                d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6zm6.5-3a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4z" />
+                        </svg>
+                    </a>
+                    <a href="#" aria-label="YouTube">
+                        <svg fill="currentColor" viewBox="0 0 24 24" width="24" height="24">
+                            <path
+                                d="M18.88 2c.57 0 1.05.21 1.44.6.38.38.6.86.6 1.44v15.92c0 .57-.21 1.05-.6 1.44a2 2 0 0 1-1.44.6H5.12c-.57 0-1.05-.21-1.44-.6a2 2 0 0 1-.6-1.44V4.04c0-.57.21-1.05.6-1.44C4.07 2.21 4.55 2 5.12 2zm-2.02 9.42l-5.38 3.1a.5.5 0 0 1-.76-.42V7.9a.5.5 0 0 1 .76-.42l5.38 3.1c.14.08.14.26 0 .34z" />
+                        </svg>
+                    </a>
+                    <a href="#" aria-label="TikTok">
+                        <svg fill="currentColor" viewBox="0 0 24 24" width="24" height="24">
+                            <path
+                                d="M21 7.91v8.18c0 1.25-.97 2.27-2.18 2.27A2.18 2.18 0 0 1 16.64 16.3V6.9a.46.46 0 0 0-.46-.46h-3.48a.46.46 0 0 0-.46.46v9.43a2.18 2.18 0 0 1-2.18 2.27 2.18 2.18 0 0 1-2.18-2.27V9.75a.46.46 0 0 0-.46-.46H4.46a.46.46 0 0 0-.46.46v6.54a4.18 4.18 0 0 0 4.18 4.18 4.18 4.18 0 0 0 4.18-4.18V8.37a4.18 4.18 0 0 0 4.18-4.18 4.18 4.18 0 0 0 4.18 4.18" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>
+        // ----------------------------------------------------
+        // 1. BANCO DE DADOS DE PRODUTOS (DEVE SER O MESMO DO index.html)
+        // ----------------------------------------------------
+        const ALL_PRODUCTS_DATA = [
+            // Masculino
+            { id: 'MAS001', name: 'Casaco de Lã Clássico', category: 'masculino', type: 'casaco', price: 499.90, imagePath: 'imagem/CasacoMasculino/casaco1.jpg', description: 'Casaco de lã premium para o inverno.', material: '80% Lã, 20% Poliéster.', folder: 'CasacoMasculino', imageCount: 6, colors: ['#333', '#fff'], onSale: true },
+            { id: 'MAS002', name: 'Casaco Xadrez Elegante', category: 'masculino', type: 'casaco', price: 549.90, imagePath: 'imagem/CasacoMasculino/casaco2.jpg', description: 'Casaco moderno com estampa xadrez.', material: '50% Lã, 50% Algodão.', folder: 'CasacoMasculino', imageCount: 6, colors: ['#000', '#ccc'], onSale: false },
+            { id: 'MAS003', name: 'Moletom Canguru Preto', category: 'masculino', type: 'casaco', price: 169.90, imagePath: 'imagem/CasacoMasculino/casaco3.jpg', description: 'Moletom casual e quente com bolso canguru.', material: '100% Algodão.', folder: 'CasacoMasculino', imageCount: 6, colors: ['#000', '#fff'], onSale: true },
+            { id: 'MAS004', name: 'Jaqueta Esportiva Leve', category: 'masculino', type: 'casaco', price: 175.90, imagePath: 'imagem/CasacoMasculino/casaco4.jpg', description: 'Jaqueta esportiva ideal para exercícios.', material: '100% Poliéster.', folder: 'CasacoMasculino', imageCount: 6, colors: ['#000', '#333'], onSale: true },
+            { id: 'MAS005', name: 'Casaco Nylon Azul', category: 'masculino', type: 'casaco', price: 185.90, imagePath: 'imagem/CasacoMasculino/casaco5.jpg', description: 'Casaco de nylon leve e resistente à água.', material: '100% Nylon.', folder: 'CasacoMasculino', imageCount: 6, colors: ['#000080', '#fff'], onSale: false },
+            { id: 'MAS006', name: 'Jaqueta Corta-Vento', category: 'masculino', type: 'casaco', price: 159.90, imagePath: 'imagem/CasacoMasculino/casaco6.jpg', description: 'Corta-vento básico para dias de vento.', material: '100% Poliéster.', folder: 'CasacoMasculino', imageCount: 6, colors: ['#000', '#666'], onSale: true },
+
+            { id: 'MAS007', name: 'Camisa Box Gueixa', category: 'masculino', type: 'camisa', price: 89.90, imagePath: 'imagem/CamisaMasculina/camisa1.jpg', description: 'Camisa box com estampa artística.', material: '100% Algodão.', folder: 'CamisaMasculina', imageCount: 5, colors: ['#000', '#fff'], onSale: true },
+            { id: 'MAS008', name: 'Camisa Box Renascer', category: 'masculino', type: 'camisa', price: 89.90, imagePath: 'imagem/CamisaMasculina/camisa2.jpg', description: 'Camisa box com estampa Renascer.', material: '100% Algodão.', folder: 'CamisaMasculina', imageCount: 5, colors: ['#000', '#fff'], onSale: false },
+            { id: 'MAS009', name: 'Camisa Geométrica', category: 'masculino', type: 'camisa', price: 94.90, imagePath: 'imagem/CamisaMasculina/camisa3.jpg', description: 'Camisa com estampa geométrica moderna.', material: '100% Algodão.', folder: 'CamisaMasculina', imageCount: 5, colors: ['#000', '#fff'], onSale: true },
+            { id: 'MAS010', name: 'Camisa Retrô 90s', category: 'masculino', type: 'camisa', price: 84.90, imagePath: 'imagem/CamisaMasculina/camisa4.jpg', description: 'Camisa com pegada vintage dos anos 90.', material: '100% Algodão.', folder: 'CamisaMasculina', imageCount: 5, colors: ['#000', '#fff'], onSale: false },
+            { id: 'MAS011', name: 'Camisa Minimalista', category: 'masculino', type: 'camisa', price: 79.90, imagePath: 'imagem/CamisaMasculina/camisa5.jpg', description: 'Camisa básica de alta qualidade.', material: '100% Algodão.', folder: 'CamisaMasculina', imageCount: 5, colors: ['#000', '#fff'], onSale: true },
+
+            { id: 'MAS012', name: 'Short India Estampado', category: 'masculino', type: 'short', price: 79.90, imagePath: 'imagem/BermudaMasculina/Bermida1.jpg', description: 'Short masculino com estampa indiana.', material: '100% Poliéster.', folder: 'BermudaMasculina', imageCount: 5, colors: ['#666', '#800000'], onSale: false },
+            { id: 'MAS013', name: 'Short Surf Listrado', category: 'masculino', type: 'short', price: 84.90, imagePath: 'imagem/BermudaMasculina/Bermida2.jpg', description: 'Short ideal para praia e piscina.', material: '100% Poliéster.', folder: 'BermudaMasculina', imageCount: 5, colors: ['#000', '#fff'], onSale: true },
+            { id: 'MAS014', name: 'Short Chino Bege', category: 'masculino', type: 'short', price: 99.90, imagePath: 'imagem/BermudaMasculina/Bermida3.jpg', description: 'Short de sarja casual.', material: '100% Algodão.', folder: 'BermudaMasculina', imageCount: 5, colors: ['#f5f5dc', '#808000'], onSale: false },
+            { id: 'MAS015', name: 'Short Tactel Básico', category: 'masculino', type: 'short', price: 69.90, imagePath: 'imagem/BermudaMasculina/Bermida4.jpg', description: 'Short Tactel esportivo e leve.', material: '100% Poliéster.', folder: 'BermudaMasculina', imageCount: 5, colors: ['#000', '#333'], onSale: true },
+            { id: 'MAS016', name: 'Short Listras Modernas', category: 'masculino', type: 'short', price: 95.90, imagePath: 'imagem/BermudaMasculina/Bermida5.jpg', description: 'Short com listras coloridas.', material: '100% Algodão.', folder: 'BermudaMasculina', imageCount: 5, colors: ['#fff', '#333'], onSale: false },
+
+            // Feminino
+            { id: 'FEM001', name: 'Camisa Básica Branca', category: 'feminino', type: 'camisa', price: 89.90, imagePath: 'imagem/CamisaFeminina/camisa1.jpg', description: 'Camisa feminina básica e versátil.', material: '100% Algodão.', folder: 'CamisaFeminina', imageCount: 7, colors: ['#333', '#fff'], onSale: true },
+            { id: 'FEM002', name: 'Camisa Cropped Estampada', category: 'feminino', type: 'camisa', price: 99.90, imagePath: 'imagem/CamisaFeminina/camisa2.jpg', description: 'Cropped moderno com estampa floral.', material: '100% Viscose.', folder: 'CamisaFeminina', imageCount: 7, colors: ['#f0f0f0'], onSale: false },
+            { id: 'FEM003', name: 'Camisa Gola V Manga Longa', category: 'feminino', type: 'camisa', price: 109.90, imagePath: 'imagem/CamisaFeminina/camisa3.jpg', description: 'Camisa elegante com decote em V.', material: '95% Algodão, 5% Elastano.', folder: 'CamisaFeminina', imageCount: 7, colors: ['#000', '#fff'], onSale: true },
+            { id: 'FEM004', name: 'Regata Floral', category: 'feminino', type: 'camisa', price: 79.90, imagePath: 'imagem/CamisaFeminina/camisa4.jpg', description: 'Regata leve com estampa floral vibrante.', material: '100% Viscose.', folder: 'CamisaFeminina', imageCount: 7, colors: ['#fff', '#f00'], onSale: false },
+            { id: 'FEM005', name: 'Baby Look Desenho', category: 'feminino', type: 'camisa', price: 89.90, imagePath: 'imagem/CamisaFeminina/camisa5.jpg', description: 'Baby look com estampa divertida.', material: '100% Algodão.', folder: 'CamisaFeminina', imageCount: 7, colors: ['#fff'], onSale: true },
+            { id: 'FEM006', name: 'Camisa Arte Exclusiva', category: 'feminino', type: 'camisa', price: 92.90, imagePath: 'imagem/CamisaFeminina/camisa6.jpg', description: 'Camisa com arte exclusiva da marca Poisson.', material: '100% Algodão.', folder: 'CamisaFeminina', imageCount: 7, colors: ['#000', '#fff'], onSale: false },
+            { id: 'FEM007', name: 'Camisa Slim Fit Cinza', category: 'feminino', type: 'camisa', price: 95.90, imagePath: 'imagem/CamisaFeminina/camisa7.jpg', description: 'Modelagem slim fit que se ajusta ao corpo.', material: '95% Algodão, 5% Elastano.', folder: 'CamisaFeminina', imageCount: 7, colors: ['#4b5563', '#000'], onSale: true },
+
+            { id: 'FEM008', name: 'Short Jeans Frontal', category: 'feminino', type: 'short', price: 99.90, imagePath: 'imagem/BermudaFeminina/Bermida1.jpg', description: 'Short jeans de cintura alta, confortável.', material: '100% Algodão.', folder: 'BermudaFeminina', imageCount: 4, colors: ['#000', '#fff'], onSale: false },
+            { id: 'FEM009', name: 'Short Esportivo Listrado', category: 'feminino', type: 'short', price: 79.90, imagePath: 'imagem/BermudaFeminina/Bermida2.jpg', description: 'Short ideal para atividades físicas.', material: '100% Poliéster.', folder: 'BermudaFeminina', imageCount: 4, colors: ['#000', '#fff'], onSale: true },
+            { id: 'FEM010', name: 'Short Cintura Alta Sarja', category: 'feminino', type: 'short', price: 109.90, imagePath: 'imagem/BermudaFeminina/Bermida3.jpg', description: 'Short de sarja com modelagem elegante.', material: '100% Algodão.', folder: 'BermudaFeminina', imageCount: 4, colors: ['#000', '#fff'], onSale: false },
+            { id: 'FEM011', name: 'Short Moletinho Conforto', category: 'feminino', type: 'short', price: 89.90, imagePath: 'imagem/BermudaFeminina/Bermida4.jpg', description: 'Short de moletinho super macio.', material: '80% Algodão, 20% Poliéster.', folder: 'BermudaFeminina', imageCount: 4, colors: ['#6b7280'], onSale: true },
+        ];
+
+        // Filtro principal: APENAS PRODUTOS EM PROMOÇÃO (onSale: true)
+        const PRODUCTS_FOR_PROMO = ALL_PRODUCTS_DATA.filter(p => p.onSale);
 
         // ----------------------------------------------------
-        // FUNÇÃO DE GERAÇÃO DE CARTÕES
+        // 2. SCRIPT DE FILTRAGEM, BUSCA E PAGINAÇÃO
         // ----------------------------------------------------
-        const generateProductCard = (product) => {
-            // Preço com desconto (Exemplo: 15% off)
-            const oldPrice = product.price;
-            const newPrice = oldPrice * 0.85; 
-            const formattedNewPrice = newPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-            const formattedOldPrice = oldPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+        document.addEventListener('DOMContentLoaded', () => {
+            const PRODUCTS_PER_PAGE = 8;
+            let productsShown = 0;
 
-            const card = document.createElement('div');
-            card.classList.add('product-card');
-            card.setAttribute('data-category', product.category);
-            card.setAttribute('data-type', product.type);
-            card.setAttribute('data-id', product.id); 
+            const productContainer = document.getElementById('product-container');
+            const genderFilters = document.querySelectorAll('.gender-filter');
+            const typeFilters = document.querySelectorAll('.type-filter');
+            const notFoundMessage = document.getElementById('not-found');
+            const loadMoreButtonContainer = document.getElementById('load-more-container');
+            const loadMoreButton = document.getElementById('load-more-button');
+            const searchInput = document.getElementById('main-search-input');
+            const navSearchInput = document.getElementById('nav-search-input');
 
-            // Conteúdo interno do cartão
-            card.innerHTML = `
+            let activeTypeFilter = 'all';
+            let currentSearchTerm = '';
+            let filteredProductsList = [];
+            let allProductCards = [];
+
+            // ----------------------------------------------------
+            // FUNÇÃO DE GERAÇÃO DE CARTÕES
+            // ----------------------------------------------------
+            const generateProductCard = (product) => {
+                // Preço com desconto (Exemplo: 15% off)
+                const oldPrice = product.price;
+                const newPrice = oldPrice * 0.85;
+                const formattedNewPrice = newPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+                const formattedOldPrice = oldPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+
+                const card = document.createElement('div');
+                card.classList.add('product-card');
+                card.setAttribute('data-category', product.category);
+                card.setAttribute('data-type', product.type);
+                card.setAttribute('data-id', product.id);
+
+                // Conteúdo interno do cartão
+                card.innerHTML = `
                 <div class="product-image-box">
                     <a href="produto.html?id=${product.id}"><img src="${product.imagePath}" alt="${product.name}" class="product-image"></a>
                     <div class="color-options">
@@ -223,132 +314,133 @@
                 <p class="product-price" style="color: #cc0000; font-weight: 700;">${formattedNewPrice}</p>
                 <span style="text-decoration: line-through; color: #999; font-size: 12px;">${formattedOldPrice}</span>
             `;
-            return card;
-        };
-        
-        // Geração inicial de todos os cartões de promoção no DOM (escondidos)
-        PRODUCTS_FOR_PROMO.forEach(product => {
-            const card = generateProductCard(product);
-            card.style.display = 'none';
-            allProductCards.push(card);
-            productContainer.insertBefore(card, loadMoreButtonContainer);
-        });
+                return card;
+            };
 
-        // ----------------------------------------------------
-        // FUNÇÃO DE PAGINAÇÃO: Exibe os próximos N produtos
-        // ----------------------------------------------------
-        const showMoreProducts = () => {
-            const productsToLoad = filteredProductsList.slice(productsShown, productsShown + PRODUCTS_PER_PAGE);
-            
-            productsToLoad.forEach(card => {
-                card.style.display = 'flex';
+            // Geração inicial de todos os cartões de promoção no DOM (escondidos)
+            PRODUCTS_FOR_PROMO.forEach(product => {
+                const card = generateProductCard(product);
+                card.style.display = 'none';
+                allProductCards.push(card);
+                productContainer.insertBefore(card, loadMoreButtonContainer);
             });
-            
-            productsShown += productsToLoad.length;
-            
-            if (productsShown >= filteredProductsList.length) {
+
+            // ----------------------------------------------------
+            // FUNÇÃO DE PAGINAÇÃO: Exibe os próximos N produtos
+            // ----------------------------------------------------
+            const showMoreProducts = () => {
+                const productsToLoad = filteredProductsList.slice(productsShown, productsShown + PRODUCTS_PER_PAGE);
+
+                productsToLoad.forEach(card => {
+                    card.style.display = 'flex';
+                });
+
+                productsShown += productsToLoad.length;
+
+                if (productsShown >= filteredProductsList.length) {
+                    loadMoreButtonContainer.style.display = 'none';
+                } else {
+                    loadMoreButtonContainer.style.display = 'block';
+                }
+            };
+
+            // ----------------------------------------------------
+            // FUNÇÃO PRINCIPAL: Aplica Filtros, Busca e Paginação
+            // ----------------------------------------------------
+            const applyFilter = () => {
+                productsShown = 0;
+                filteredProductsList = [];
+
+                const activeGenderFilters = Array.from(genderFilters)
+                    .filter(checkbox => checkbox.checked)
+                    .map(checkbox => checkbox.value);
+
+                // 1. Oculta todos os produtos
+                allProductCards.forEach(card => card.style.display = 'none');
                 loadMoreButtonContainer.style.display = 'none';
-            } else {
-                loadMoreButtonContainer.style.display = 'block';
-            }
-        };
 
-        // ----------------------------------------------------
-        // FUNÇÃO PRINCIPAL: Aplica Filtros, Busca e Paginação
-        // ----------------------------------------------------
-        const applyFilter = () => {
-            productsShown = 0; 
-            filteredProductsList = []; 
-            
-            const activeGenderFilters = Array.from(genderFilters)
-                .filter(checkbox => checkbox.checked)
-                .map(checkbox => checkbox.value);
+                // 2. Itera sobre os cartões e verifica os filtros/busca
+                const currentSearch = currentSearchTerm;
 
-            // 1. Oculta todos os produtos
-            allProductCards.forEach(card => card.style.display = 'none');
-            loadMoreButtonContainer.style.display = 'none';
+                allProductCards.forEach(card => {
+                    const productType = card.getAttribute('data-type');
+                    const productCategory = card.getAttribute('data-category');
+                    const productName = card.querySelector('.product-name').textContent.toLowerCase();
 
-            // 2. Itera sobre os cartões e verifica os filtros/busca
-            const currentSearch = currentSearchTerm;
-            
-            allProductCards.forEach(card => {
-                const productType = card.getAttribute('data-type');
-                const productCategory = card.getAttribute('data-category');
-                const productName = card.querySelector('.product-name').textContent.toLowerCase();
-                
-                let passesTypeFilter = true;
-                let passesSearchFilter = true;
-                let passesGenderFilter = true;
+                    let passesTypeFilter = true;
+                    let passesSearchFilter = true;
+                    let passesGenderFilter = true;
 
-                // Checa o filtro de TIPO
-                if (activeTypeFilter !== 'all') {
-                    passesTypeFilter = productType === activeTypeFilter;
+                    // Checa o filtro de TIPO
+                    if (activeTypeFilter !== 'all') {
+                        passesTypeFilter = productType === activeTypeFilter;
+                    }
+
+                    // Checa o filtro de GÊNERO
+                    if (activeGenderFilters.length > 0) {
+                        passesGenderFilter = activeGenderFilters.includes(productCategory);
+                    }
+
+                    // Checa a BUSCA por NOME
+                    if (currentSearch) {
+                        passesSearchFilter = productName.includes(currentSearch);
+                    }
+
+                    if (passesTypeFilter && passesSearchFilter && passesGenderFilter) {
+                        filteredProductsList.push(card);
+                    }
+                });
+
+                // 3. Aplica a paginação na lista filtrada
+                showMoreProducts();
+
+                // 4. Gerencia a mensagem "Não Encontrado"
+                if (filteredProductsList.length === 0) {
+                    notFoundMessage.style.display = 'block';
+                } else {
+                    notFoundMessage.style.display = 'none';
                 }
-                
-                // Checa o filtro de GÊNERO
-                if (activeGenderFilters.length > 0) {
-                    passesGenderFilter = activeGenderFilters.includes(productCategory);
-                }
+            };
 
-                // Checa a BUSCA por NOME
-                if (currentSearch) {
-                    passesSearchFilter = productName.includes(currentSearch);
-                }
+            // --- LISTENERS ---
 
-                if (passesTypeFilter && passesSearchFilter && passesGenderFilter) {
-                    filteredProductsList.push(card);
-                }
+            loadMoreButton.addEventListener('click', showMoreProducts);
+
+            document.querySelectorAll('.gender-filter').forEach(checkbox => {
+                checkbox.addEventListener('change', applyFilter);
             });
 
-            // 3. Aplica a paginação na lista filtrada
-            showMoreProducts();
+            typeFilters.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    activeTypeFilter = this.getAttribute('data-filter-type');
 
-            // 4. Gerencia a mensagem "Não Encontrado"
-            if (filteredProductsList.length === 0) {
-                notFoundMessage.style.display = 'block';
-            } else {
-                notFoundMessage.style.display = 'none';
-            }
-        };
+                    currentSearchTerm = '';
+                    if (searchInput) searchInput.value = '';
+                    if (navSearchInput) navSearchInput.value = '';
 
-        // --- LISTENERS ---
+                    applyFilter();
+                });
+            });
 
-        loadMoreButton.addEventListener('click', showMoreProducts);
-
-        document.querySelectorAll('.gender-filter').forEach(checkbox => {
-            checkbox.addEventListener('change', applyFilter);
-        });
-
-        typeFilters.forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                activeTypeFilter = this.getAttribute('data-filter-type');
-                
-                currentSearchTerm = '';
-                if(searchInput) searchInput.value = '';
-                if(navSearchInput) navSearchInput.value = '';
-                
+            const updateSearch = (e) => {
+                currentSearchTerm = e.target.value.toLowerCase().trim();
                 applyFilter();
-            });
-        });
-        
-        const updateSearch = (e) => {
-            currentSearchTerm = e.target.value.toLowerCase().trim();
+            };
+
+            if (searchInput) {
+                searchInput.addEventListener('input', updateSearch);
+                searchInput.parentElement.addEventListener('submit', (e) => e.preventDefault());
+            }
+            if (navSearchInput) {
+                navSearchInput.addEventListener('input', updateSearch);
+                navSearchInput.parentElement.addEventListener('submit', (e) => e.preventDefault());
+            }
+
+            // Inicializa o carregamento dos produtos
             applyFilter();
-        };
-
-        if(searchInput) {
-            searchInput.addEventListener('input', updateSearch);
-            searchInput.parentElement.addEventListener('submit', (e) => e.preventDefault());
-        }
-        if(navSearchInput) {
-            navSearchInput.addEventListener('input', updateSearch);
-            navSearchInput.parentElement.addEventListener('submit', (e) => e.preventDefault());
-        }
-
-        // Inicializa o carregamento dos produtos
-        applyFilter();
-    });
-</script>
+        });
+    </script>
 </body>
+
 </html>

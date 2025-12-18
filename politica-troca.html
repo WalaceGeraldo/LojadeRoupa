@@ -1,130 +1,226 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Política de Troca e Devolução | Poisson Modas</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
-<style>
-    .policy-page {
-        padding: 50px 0;
-        line-height: 1.8;
-        min-height: 80vh;
-    }
-    .policy-page h1 {
-        font-size: 32px;
-        color: #111827;
-        margin-bottom: 30px;
-    }
-    .policy-page h2 {
-        font-size: 24px;
-        color: #111827;
-        margin-top: 30px;
-        border-left: 4px solid #111827;
-        padding-left: 10px;
-    }
-    .policy-page p, .policy-page ul {
-        color: #4b5563;
-        margin-bottom: 20px;
-    }
-    .policy-page ul {
-        padding-left: 25px;
-        list-style: disc;
-    }
-    .policy-page strong {
-        color: #111827;
-    }
-</style>
-</head>
-<body>
-<header class="site-header">
-<div class="container">
-<a href="index.html" class="brand logo-text">₱Øł₴₴Ø₦</a>
-<input type="checkbox" id="menu-toggle" class="menu-toggle">
-<label for="menu-toggle" class="menu-button">
-<span></span>
-<span></span>
-<span></span>
-</label>
-<form class="search-bar header-search" role="search" aria-label="Busca de produtos" style="display:none;">
-    <input type="search" placeholder="Buscar por roupa..." aria-label="Buscar por roupa">
-    <button type="submit" aria-label="Pesquisar">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M15.5 15.5l5.2 5.2"/>
-            <path d="M17 10a7 7 0 10-14 0 7 7 0 0014 0z"/>
-        </svg>
-    </button>
-</form>
-<nav class="nav" aria-label="Menu principal">
-    <a href="index.html">Novidades</a>
-    <a href="masculino.html">Masculino</a>
-    <a href="feminino.html">Feminino</a>
-    <a href="promoçoes.html">Promoções</a>
-    <a href="contato.html">Contato</a>
-</nav>
-<a href="carrinho.html" class="cart-icon" aria-label="Carrinho de Compras">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
-        <path d="M3 6h18"/>
-        <path d="M16 10a4 4 0 01-8 0"/>
-    </svg>
-</a>
-</div>
-</header>
-<main class="container policy-page">
-    <h1>Política de Troca e Devolução</h1>
-
-    <h2>1. Condições Gerais</h2>
-    <p>Nossa política de troca e devolução está em conformidade com o Código de Defesa do Consumidor (Lei nº 8.078/90). Todas as solicitações devem ser comunicadas à nossa Central de Atendimento.</p>
-
-    <h2>2. Prazo para Troca ou Devolução</h2>
-    <ul>
-        <li><strong>Arrependimento ou Desistência:</strong> O prazo é de 7 (sete) dias corridos, contados a partir da data de recebimento do produto, para comunicar a desistência e solicitar a devolução e o estorno.</li>
-        <li><strong>Defeito de Fabricação:</strong> O prazo é de 30 (trinta) dias corridos, contados a partir da data de recebimento do produto.</li>
-    </ul>
-
-    <h2>3. Condições do Produto</h2>
-    <p>O produto deve ser devolvido nas seguintes condições:</p>
-    <ul>
-        <li>Na embalagem original, completa, com todos os acessórios, etiquetas e manuais (se houver).</li>
-        <li>Sem indícios de uso, lavagem, ou modificação (exceto em caso de defeito).</li>
-        <li>Acompanhado da Nota Fiscal.</li>
-    </ul>
-
-    <h2>4. Procedimento de Troca</h2>
-    <p>Após a solicitação ser aprovada pelo nosso setor de análise, será gerado um código de logística reversa. O produto deverá ser postado em uma agência dos Correios, sem custos adicionais para o cliente, no prazo de 10 dias úteis.</p>
-    <p><strong>Opções de Troca:</strong> O cliente pode optar por:</p>
-    <ul>
-        <li>Troca por outro produto de igual valor.</li>
-        <li>Troca por um Vale-Troca para uso em futuras compras.</li>
-        <li>Restituição total ou parcial do valor pago.</li>
-    </ul>
-    
-    <h2>5. Restituição de Valores</h2>
-    <p>A restituição de valores será processada após o recebimento e análise do produto em nosso Centro de Distribuição.</p>
-    <ul>
-        <li><strong>Cartão de Crédito:</strong> O estorno poderá ocorrer em até 2 (duas) faturas subsequentes.</li>
-        <li><strong>Boleto Bancário/PIX:</strong> O reembolso será efetuado via depósito bancário ou PIX em até 10 (dez) dias úteis na conta do titular da compra.</li>
-    </ul>
-</main>
-<footer class="site-footer"></footer>
-<script>
-    // Script para carregar o cabeçalho e o rodapé da página principal para manter a consistência visual.
-    const copyContent = (selector, target) => {
-        try {
-            const content = window.opener.document.querySelector(selector)?.innerHTML;
-            if (content) {
-                document.querySelector(target).innerHTML = content;
-            }
-        } catch (e) {
-            // Ignora erro se a página não foi aberta via window.open ou se o mesmo-origem não for atendido
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Política de Troca e Devolução | Poisson Modas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .policy-page {
+            padding: 50px 0;
+            line-height: 1.8;
+            min-height: 80vh;
         }
-    };
-    copyContent('header.site-header', 'header.site-header');
-    copyContent('footer.site-footer', 'footer.site-footer');
-</script>
+
+        .policy-page h1 {
+            font-size: 32px;
+            color: #111827;
+            margin-bottom: 30px;
+        }
+
+        .policy-page h2 {
+            font-size: 24px;
+            color: #111827;
+            margin-top: 30px;
+            border-left: 4px solid #111827;
+            padding-left: 10px;
+        }
+
+        .policy-page p,
+        .policy-page ul {
+            color: #4b5563;
+            margin-bottom: 20px;
+        }
+
+        .policy-page ul {
+            padding-left: 25px;
+            list-style: disc;
+        }
+
+        .policy-page strong {
+            color: #111827;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="container">
+            <a href="index.html" class="brand logo-text">₱Øł₴₴Ø₦</a>
+            <input type="checkbox" id="menu-toggle" class="menu-toggle">
+            <label for="menu-toggle" class="menu-button">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+            <form class="search-bar header-search" role="search" aria-label="Busca de produtos" style="display:none;">
+                <input type="search" placeholder="Buscar por roupa..." aria-label="Buscar por roupa">
+                <button type="submit" aria-label="Pesquisar">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M15.5 15.5l5.2 5.2" />
+                        <path d="M17 10a7 7 0 10-14 0 7 7 0 0014 0z" />
+                    </svg>
+                </button>
+            </form>
+            <nav class="nav" aria-label="Menu principal">
+                <a href="index.html">Novidades</a>
+                <a href="masculino.html">Masculino</a>
+                <a href="feminino.html">Feminino</a>
+                <a href="promoçoes.html">Promoções</a>
+                <a href="contato.html">Contato</a>
+            </nav>
+            <a href="carrinho.html" class="cart-icon" aria-label="Carrinho de Compras">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
+                    <path d="M3 6h18" />
+                    <path d="M16 10a4 4 0 01-8 0" />
+                </svg>
+            </a>
+        </div>
+    </header>
+    <main class="container policy-page">
+        <h1>Política de Troca e Devolução</h1>
+
+        <h2>1. Condições Gerais</h2>
+        <p>Nossa política de troca e devolução está em conformidade com o Código de Defesa do Consumidor (Lei nº
+            8.078/90). Todas as solicitações devem ser comunicadas à nossa Central de Atendimento.</p>
+
+        <h2>2. Prazo para Troca ou Devolução</h2>
+        <ul>
+            <li><strong>Arrependimento ou Desistência:</strong> O prazo é de 7 (sete) dias corridos, contados a partir
+                da data de recebimento do produto, para comunicar a desistência e solicitar a devolução e o estorno.
+            </li>
+            <li><strong>Defeito de Fabricação:</strong> O prazo é de 30 (trinta) dias corridos, contados a partir da
+                data de recebimento do produto.</li>
+        </ul>
+
+        <h2>3. Condições do Produto</h2>
+        <p>O produto deve ser devolvido nas seguintes condições:</p>
+        <ul>
+            <li>Na embalagem original, completa, com todos os acessórios, etiquetas e manuais (se houver).</li>
+            <li>Sem indícios de uso, lavagem, ou modificação (exceto em caso de defeito).</li>
+            <li>Acompanhado da Nota Fiscal.</li>
+        </ul>
+
+        <h2>4. Procedimento de Troca</h2>
+        <p>Após a solicitação ser aprovada pelo nosso setor de análise, será gerado um código de logística reversa. O
+            produto deverá ser postado em uma agência dos Correios, sem custos adicionais para o cliente, no prazo de 10
+            dias úteis.</p>
+        <p><strong>Opções de Troca:</strong> O cliente pode optar por:</p>
+        <ul>
+            <li>Troca por outro produto de igual valor.</li>
+            <li>Troca por um Vale-Troca para uso em futuras compras.</li>
+            <li>Restituição total ou parcial do valor pago.</li>
+        </ul>
+
+        <h2>5. Restituição de Valores</h2>
+        <p>A restituição de valores será processada após o recebimento e análise do produto em nosso Centro de
+            Distribuição.</p>
+        <ul>
+            <li><strong>Cartão de Crédito:</strong> O estorno poderá ocorrer em até 2 (duas) faturas subsequentes.</li>
+            <li><strong>Boleto Bancário/PIX:</strong> O reembolso será efetuado via depósito bancário ou PIX em até 10
+                (dez) dias úteis na conta do titular da compra.</li>
+        </ul>
+    </main>
+    <footer class="site-footer">
+        <div class="footer-top">
+            <div class="container">
+                <img src="logo.png" alt="Logo Poisson Modas" class="footer-logo">
+                <nav class="footer-nav">
+                    <a href="#" id="open-contact-modal">Fale conosco</a>
+                    <a href="devolucao.html">Trocas / Devoluções</a>
+                    <a href="rastrear.html">Rastrear Pedido</a>
+                    <a href="politica-troca.html">Política de Troca e Devolução</a>
+                    <a href="denuncia.html">Denuncie o Uso Ilegal de Marcas</a>
+                </nav>
+            </div>
+        </div>
+
+        <div class="footer-main">
+            <div class="container">
+                <div class="footer-about">
+                    <h4>Sobre nós</h4>
+                    <p>Poisson – Arte que nasce no papel e vive no tecido. Cada estampa é o reflexo de uma criação feita
+                        à mão, com técnicas como pintura a óleo, giz pastel, lápis e grafite. Nada aqui é digital. Você
+                        veste arte real, com alma, textura e história. Uma marca feita para quem não veste o óbvio –
+                        veste autenticidade.</p>
+                    <p>&copy; Dados do vendedor: CNPJ 77.41.007.3/0000-00-2B</p>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Categorias</h4>
+                    <ul>
+                        <li><a href="masculino.html">Masculino</a></li>
+                        <li><a href="feminino.html">Feminino</a></li>
+                        <li><a href="promoçoes.html">Promoções</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-payment">
+                    <h4>Formas de pagamento</h4>
+                    <div class="payment-icons">
+                        <img src="imagens/icon/visa.png" alt="Visa" style="height:30px;">
+                        <img src="imagens/icon/mastercard.png" alt="Mastercard" style="height:30px;">
+                        <img src="imagens/icon/american.png" alt="American Express" style="height:30px;">
+                        <img src="imagens/icon/elo.png" alt="Elo" style="height:30px;">
+                        <img src="imagens/icon/pix.png" alt="Pix" style="height:30px;">
+                    </div>
+                    <img src="imagens/icon/security-seal.png" alt="Site Seguro" class="security-seal">
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container">
+                <span class="social-text">Acompanhe-nos:</span>
+                <div class="social-icons">
+                    <a href="#" aria-label="Instagram">
+                        <svg fill="currentColor" viewBox="0 0 24 24" width="24" height="24">
+                            <path
+                                d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4c0 3.2-2.6 5.8-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8C2 4.6 4.6 2 7.8 2zm-.2 2A4.2 4.2 0 0 0 3.6 7.6v8.8a4.2 4.2 0 0 0 4.2 4.2h8.8a4.2 4.2 0 0 0 4.2-4.2V7.6a4.2 4.2 0 0 0-4.2-4.2H7.6z" />
+                            <path
+                                d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6zm6.5-3a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4z" />
+                        </svg>
+                    </a>
+                    <a href="#" aria-label="YouTube">
+                        <svg fill="currentColor" viewBox="0 0 24 24" width="24" height="24">
+                            <path
+                                d="M18.88 2c.57 0 1.05.21 1.44.6.38.38.6.86.6 1.44v15.92c0 .57-.21 1.05-.6 1.44a2 2 0 0 1-1.44.6H5.12c-.57 0-1.05-.21-1.44-.6a2 2 0 0 1-.6-1.44V4.04c0-.57.21-1.05.6-1.44C4.07 2.21 4.55 2 5.12 2zm-2.02 9.42l-5.38 3.1a.5.5 0 0 1-.76-.42V7.9a.5.5 0 0 1 .76-.42l5.38 3.1c.14.08.14.26 0 .34z" />
+                        </svg>
+                    </a>
+                    <a href="#" aria-label="TikTok">
+                        <svg fill="currentColor" viewBox="0 0 24 24" width="24" height="24">
+                            <path
+                                d="M21 7.91v8.18c0 1.25-.97 2.27-2.18 2.27A2.18 2.18 0 0 1 16.64 16.3V6.9a.46.46 0 0 0-.46-.46h-3.48a.46.46 0 0 0-.46.46v9.43a2.18 2.18 0 0 1-2.18 2.27 2.18 2.18 0 0 1-2.18-2.27V9.75a.46.46 0 0 0-.46-.46H4.46a.46.46 0 0 0-.46.46v6.54a4.18 4.18 0 0 0 4.18 4.18 4.18 4.18 0 0 0 4.18-4.18V8.37a4.18 4.18 0 0 0 4.18-4.18 4.18 4.18 0 0 0 4.18 4.18" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>
+        // Script para carregar o cabeçalho e o rodapé da página principal para manter a consistência visual.
+        const copyContent = (selector, target) => {
+            try {
+                const content = window.opener.document.querySelector(selector)?.innerHTML;
+                if (content) {
+                    document.querySelector(target).innerHTML = content;
+                }
+            } catch (e) {
+                // Ignora erro se a página não foi aberta via window.open ou se o mesmo-origem não for atendido
+            }
+        };
+        copyContent('header.site-header', 'header.site-header');
+        copyContent('footer.site-footer', 'footer.site-footer');
+    </script>
 </body>
+
 </html>
