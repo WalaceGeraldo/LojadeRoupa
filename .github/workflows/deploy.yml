@@ -1,0 +1,26 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Executar deploy na VM
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.SSH }}
+          script: |
+            cd /home/teste/LojadeRoupa
+            git pull origin master
+
+            sudo rm -rf /var/www/html/*
+            sudo cp -r ./* /var/www/html/
+
+            sudo systemctl reload nginx
